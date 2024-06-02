@@ -35,15 +35,15 @@ function Public() {
       <AppBar/>
       <Marquee/>
     </Box>
-    <Container disableGutters fixed sx={{ display : 'flex', alignItems : 'center', gap : 1, py : 1}}>
+    <Container disableGutters  fixed sx={{ display : 'flex', alignItems : 'center', gap : 1, py : 1, px : 3}}>
        <Link style={{ textDecoration : 'none' }}>
-          <Button className='button_info' sx={{ color : 'white', borderRadius : '5px', fontWeight : 600, width : {md : '120px', xs : '80px'}, height: {md : '40px', xs : '25px'}, fontSize : '10px' }} > Đặt Cược </Button>
+          <Button className='button_info' sx={{ color : 'white', borderRadius : '5px', fontWeight : 600, width : {md : 'fit-content', xs : 'fit-content'}, height: {md : '40px', xs : '25px'}, fontSize : '10px' }} > Cược TA88 </Button>
         </Link>
         <Link style={{ textDecoration : 'none' }}>
-        <Button  className='button_info' sx={{ color : 'white', borderRadius : '5px', fontWeight : 600, width : {md : '120px', xs : '80px'}, height: {md : '40px', xs : '25px'}, fontSize : '10px',  }} > Đặt Cược </Button>
+        <Button  className='button_info' sx={{ color : 'white', borderRadius : '5px', fontWeight : 600, width : {md : 'fit-content', xs : 'fit-content'}, height: {md : '40px', xs : '25px'}, fontSize : '10px',  }} > Cược Nbet </Button>
         </Link>
         <Link style={{ textDecoration : 'none' }}>
-        <Button  className='button_info' sx={{ color : 'white', borderRadius : '5px', fontWeight : 600, width : {md : '120px', xs : '80px'}, height: {md : '40px', xs : '25px'}, fontSize : '10px',  }} > Đặt Cược </Button>
+        <Button  className='button_info' sx={{ color : 'white', borderRadius : '5px', fontWeight : 600, width : {md : 'fit-content', xs : 'fit-content'}, height: {md : '40px', xs : '25px'}, fontSize : '10px',  }} > Cược Fabet </Button>
         </Link>
     </Container>
     {location.pathname?.slice(0, 6) === "/video" ? '' : <Banner data={ads} />}
@@ -52,6 +52,7 @@ function Public() {
       <img src={BannerLeft} alt=""style={{ position : 'fixed', left : '5%', top : '15%', height : '40%' }}/>
       <img src={BannerLeft} alt=""style={{ position : 'fixed', left : '5%', bottom :  '5%' , height : '40%'}}/>
     </Box>
+   
     <Outlet/>
     <Box sx={{ flexDirection : 'column', display : { md : 'flex', sm : 'none', xs : 'none'}, height : '100%' }}>
         <img src={BannerRight} alt=""style={{ position : 'fixed', right : '5%', top : '15%', height : '40%' }}/>

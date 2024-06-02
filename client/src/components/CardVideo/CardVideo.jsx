@@ -3,7 +3,7 @@ import  Box from '@mui/material/Box'
 import CustomGrid from '../CustomGrid/CustomGrid'
 import BannerBottomVideo from '../../assets/banner_video.gif'
 import BannerVideoFooter from '../../assets/bannerVideoFooter.gif'
-import { Player, BigPlayButton, ControlBar , LoadingSpinner, ReplayControl} from 'video-react';
+import { Player, BigPlayButton, ControlBar , LoadingSpinner, PlayToggle, VolumeMenuButton, FullscreenToggle} from 'video-react';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import Button from '@mui/material/Button';
 import '../../index.css'
@@ -35,7 +35,6 @@ function CardVideo({ ChatBox, titleContent,blv }) {
   useEffect(() => {
     apiGetAllADS()
   }, [])
-  console.log(ads)
   const sources = {
     sintelTrailer : ads ? ads?.file_url : 'https://sovotv.live/uploads/resources/videos/67aee69f05e555769b7c925b6d36aeb7.mp4',
     // sintelTrailer: 'https://sovotv.live/uploads/resources/videos/67aee69f05e555769b7c925b6d36aeb7.mp4',
@@ -120,7 +119,15 @@ function CardVideo({ ChatBox, titleContent,blv }) {
      <Box sx={{ py : { md : 0, xs : 0}}} >
     {!titleContent && matches  && <Container disableGutters sx={{ py : { md : 0, xs : 2} }} >
       <Container disableGutters  fixed sx={{  height :  { xs : '30px', md : '100%' }, width : { xs : '100%', md : '100%'}}}>
-        <Box sx={{ py : 0,width : '100%' }}>
+        <Box sx={{ width : '100%', py :  { md :  0, xs : 0}, display : { md : 'flex' , xs  : 'flex'}, flexDirection : { xs : 'column', md : 'row'}  }}>
+            <Box sx={{ width : { md : '100%', xs : '100%'} }}>
+                <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
+              </Box>
+              <Box sx={{ width : { md : '100%', xs : '100%'} }}>
+                <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
+              </Box>
+          </Box>
+          <Box sx={{ width : '100%', py :  { md :  0, xs : 0}, display : { md : 'flex' , xs  : 'flex'}, flexDirection : { xs : 'column', md : 'row'}  }}>
             <Box sx={{ width : { md : '100%', xs : '100%'} }}>
                 <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
               </Box>
@@ -129,13 +136,14 @@ function CardVideo({ ChatBox, titleContent,blv }) {
               </Box>
           </Box>
       </Container>
-      <Box sx={{ pt : 12 ,width : '100%', height : '170px',  display : { md : 'flex', xs : 'flex'}, gap : 4, justifyContent : 'space-between', px : 8, alignItems : 'center', color : 'white'  }} style={styles.heroContainer}>
-          <Box sx={{ flexDirection : 'column', alignItems : 'center', display : 'flex', gap : 1 }}>
+      <Box sx={{ pt : { xs : 32, md : 0 } ,width : '100%', height : { md : '200px', xs : '300px' },  display : { md : 'flex', xs : 'flex'}, gap : 4, justifyContent : 'space-between', alignItems : 'center', color : 'white'  }} style={styles.heroContainer}>
+        <Box sx={{ pb : 5, width : '100%', height : { md : '170px', xs : '300px' }, display : { md : 'flex', xs : 'flex'}, gap : 4, justifyContent : 'space-between', px : 8, alignItems : 'center', color : 'white'  }}>
+        <Box sx={{ flexDirection : 'column', alignItems : 'center', display : 'flex', gap : 1 }}>
             <img width='70px' height='70px' src={matches[0]?.host_club_logo_url} alt="" />
             <Typography sx={{ fontSize : '14px' }}>
               {matches[0]?.host_club_name}
             </Typography>
-          </Box>
+        </Box>
         <Box sx={{ flexDirection : 'column', alignItems : 'center', display : 'flex', gap : 1 }}>
           <Link style={{ textDecoration : 'none' }} >
               <Chip label='Chưa diễn ra' className='button_info' sx={{ color : 'white', borderRadius : '10px', fontWeight : 600, width : '90px', height: '30px', fontSize : '10px' }} />
@@ -156,6 +164,7 @@ function CardVideo({ ChatBox, titleContent,blv }) {
               {matches[0]?.guest_club_name}
             </Typography>
         </Box>
+        </Box>
       </Box>
       <Box sx={{ width : '100%', height : '60px', p : 0, display : 'flex', flexDirection : 'column', color : 'white', pt : 1   }}  >
         <Box sx={{ fontSize : '15px', fontWeight : 600 }}>
@@ -169,49 +178,54 @@ function CardVideo({ ChatBox, titleContent,blv }) {
     </Container>}
       <Box sx={{ display : { md : 'flex' }, gap : 2 }}>
       
-        <Box sx={{ width : {md : '70%', xs : '100%'}, height : '100%'}} >
-       <Box sx={{ position : 'absolute ', display : 'flex', width : {md : '43%', xs : '95%'}, justifyContent : 'space-between'}}> 
+        <Box sx={{ width : {md : location?.pathname === '/' ? '66%' : '70%', xs : '100%'}, height : '100%'}} >
+       <Box sx={{ position : 'relative ', display : 'flex', width : {md : '100%', xs : '100%'}, justifyContent : 'space-between'}}> 
        
        {/* {changeSource !== sources.bunnyTrailer && <Button variant="contained" style={{ position : 'absolute', zIndex : 1, 
         color : 'white', fontSize : '10px', textTransform : 'capitalize', cursor : 'default',
         right : { md : '68%'}, width : 'fit-cotent', margin : '10px',  height: '30px', backgroundColor : 'black' }}>Video sẽ tự động bỏ qua sau {timeNext}</Button>} */}
         {ads && changeSource !== sources.bunnyTrailer ? time === 0 || time === undefined ? <Button endIcon={<SkipNextIcon/>} onClick={() => setChangeSource(sources.bunnyTrailer)} variant="contained" style={{ position : 'absolute', zIndex : 1, 
-        color : 'white', fontSize : '10px', textTransform : 'capitalize', cursor : 'pointer', right : 20, width : 'fit-content', margin : '10px',  height: '30px', backgroundColor : 'black' }}>Bỏ qua </Button> : <Button endIcon={<SkipNextIcon/>} variant="contained" style={{ position : 'absolute', zIndex : 1, 
-        color : 'white', fontSize : '10px', textTransform : 'capitalize', cursor : 'default', right : 20, width : 'fit-content', margin : '10px',  height: '30px', backgroundColor : 'black' }}>Có thể bỏ qua {time}</Button> : ''}</Box>
+        color : 'white', fontSize : '10px', textTransform : 'capitalize', cursor : 'pointer', right : 10, width : 'fit-content', margin : '25px',  height: '30px', backgroundColor : 'black' }}>Bỏ qua </Button> : <Button endIcon={<SkipNextIcon/>} variant="contained" style={{ position : 'absolute', zIndex : 1, 
+        color : 'white', fontSize : '10px', textTransform : 'capitalize', cursor : 'default', right : 10, width : 'fit-content', margin : '25px',  height: '30px', backgroundColor : 'black' }}>Có thể bỏ qua {time}</Button> : ''}</Box>
         
-        <Box sx={{ position : 'absolute ', display : 'flex', width : {md : '37%', xs : '75%'}, justifyContent : 'space-between'}}> 
-        <Box sx={{ position : 'absolute', zIndex : 1, 
-            cursor : 'pointer', top : {md : '410px', xs : '170px'}, left : 10, objectFit : 'contain',  width : {md : '90px', xs : '50px'}  }}>
-          <img src='https://tructiep2.dauphong2.live/wp-content/uploads/2024/05/CPD_Logo_290x108.gif' style={{}} alt="" />  
-          </Box>
-        <Box sx={{objectFit : 'contain',  position : 'absolute', zIndex : 1, right : 0, display :' flex', gap : {md : 2, xs : 1},
-            color : 'white', fontSize : '10px', textTransform : 'capitalize', cursor : 'pointer', top : {md : '410px', xs : '170px'},  width : '90px'  }}>
-        <Link style={{ textDecoration : 'none' }}>
-            <Chip label='Đặt Cược' className='button_info' sx={{ borderRadius : '10px', fontWeight : 600, width : {md : '80px', xs : '80px'}, height: {md : '30px', xs :'20px'}, fontSize : '10px',
-           
-             }} />
-        </Link>
-        <Link style={{ textDecoration : 'none' }}>
-            <Chip label='Đặt Cược' className='button_info' sx={{ borderRadius : '10px', fontWeight : 600, width : {md : '80px', xs : '80px'}, height: {md : '30px', xs :'20px'}, fontSize : '10px',
-            }} />
-        </Link>
-        </Box>
-        <Link style={{ textDecoration : 'none' }}>
-            <Chip label='Đặt Cược' className='button_info' sx={{ borderRadius : '5px', fontWeight : 600, width : '120px', height: '40px', fontSize : '10px' }} />
-        </Link>
-        </Box>
+     
 
         <Box sx={{ width : '100%', height : '100%' }}>
          
          {ads && <Player width='100%' height='100%' src={changeSource}  autoPlay className='customIcon' poster={changeSource === sources.bunnyTrailer ? 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4' : '' } >
-            <ControlBar autoHide={false} disableDefaultControls  > 
-              <ReplayControl seconds={10} order={2.2}  />
+            <ControlBar autoHide={true} disableDefaultControls > 
+                  <ControlBar >
+                      <PlayToggle/>
+                      <VolumeMenuButton />
+                  </ControlBar>
+                  <ControlBar>
+                    <FullscreenToggle/> 
+                  </ControlBar>
             </ControlBar>
             <BigPlayButton position="center" />
             <LoadingSpinner />
+           
           </Player>}
+          <Box sx={{ position: 'relative', display : 'flex', justifyContent : 'space-between'}} > 
+              <Box sx={{ position : 'absolute', top : {md : -35, xs : -20}, left : 10 , objectFit : 'contain',  width : {md : '90px', xs : '50px', zIndex : 1}  }}>
+                <img src='https://tructiep2.dauphong2.live/wp-content/uploads/2024/05/CPD_Logo_290x108.gif' style={{}} alt="" />  
+              </Box>
+              <Box sx={{ zIndex : 1,objectFit : 'contain',  position : 'absolute', right : { xs : '25%', md : '15%'}, display :' flex', gap : {md : 2, xs : 1},
+                  color : 'white', fontSize : '10px', textTransform : 'capitalize', cursor : 'pointer', top : {md : -30, xs : -20},  width : '90px'  }}>
+              <Link style={{ textDecoration : 'none' }}>
+                  <Chip label='Cược TA88' className='button_info' sx={{ color : 'white', borderRadius : '10px', fontWeight : 600, width : {md : 'fit-content', xs : 'fit-content'}, height: {md : '25px', xs :'20px'}, fontSize : '10px',
+                
+                  }} />
+              </Link>
+              <Link style={{ textDecoration : 'none' }}>
+                  <Chip label='Cược NBET' className='button_info' sx={{ color : 'white', borderRadius : '10px', fontWeight : 600, width : {md : 'fit-content', xs : 'fit-content'}, height: {md : '25px', xs :'20px'}, fontSize : '10px',
+                  }} />
+              </Link>
+              </Box>
 
+            </Box>
         </Box>
+       
         {/* <ReactPlayer width='100%'
             height='100%' playIcon volume={1} controls={true} url={
           [
@@ -279,14 +293,15 @@ function CardVideo({ ChatBox, titleContent,blv }) {
         : <CustomGrid size={12} flexDirectionStyle headerBox />}
 
       </Box>
-      <Box sx={{ width : '100%' }}>
+      
+      <Box sx={{ width : '100%', py :  { md :  1, xs : 0}, display : { md : 'flex' , xs  : 'flex'}, flexDirection : { xs : 'column', md : 'row'}   }}>
             <Box sx={{ width : { md : '100%', xs : '100%'} }}>
                 <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
               </Box>
               <Box sx={{ width : { md : '100%', xs : '100%'} }}>
                 <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
               </Box>
-           </Box>
+      </Box>
       {/* <Box sx={{ width : '100%', py :  { md :  1, xs : 0}, display : { md : 'flex' , xs  : 'flex'}, flexDirection : { xs : 'column', md : 'row'} }}>
           <Box sx={{ width : { md : '50%', xs : '100%'} }}>
             <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 

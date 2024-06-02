@@ -65,6 +65,9 @@ function Home() {
               <Box sx={{ width : { md : '100%', xs : '100%'} }}>
                 <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
               </Box>
+              <Box sx={{ width : { md : '100%', xs : '100%'} }}>
+                <img src={BannerBottomVideo} style={{ width :  '100%', objectFit : 'contain' }} alt="" /> 
+              </Box>
            </Box>
         </Box>
 

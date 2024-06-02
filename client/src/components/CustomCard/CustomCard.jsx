@@ -8,7 +8,6 @@ import { Container } from '@mui/material'
 import { Link } from 'react-router-dom'
 import path from '../../utils/path'
 function CustomCard({ title,  data }) {
-  console.log(data)
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#34495e' : '#fff',
     ...theme.typography.body2,
