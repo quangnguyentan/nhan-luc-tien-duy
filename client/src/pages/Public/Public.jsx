@@ -35,7 +35,7 @@ function Public() {
       <AppBar/>
       <Marquee/>
     </Box>
-    <Container disableGutters  fixed sx={{ display : 'flex', alignItems : 'center', gap : 1, py : 1, px : 3}}>
+    <Container disableGutters  fixed sx={{ display : 'flex', alignItems : 'center', gap : 1, py : 1, px : location.pathname === '/' ? 0 : 3}}>
        <Link style={{ textDecoration : 'none' }}>
           <Button className='button_info' sx={{ color : 'white', borderRadius : '5px', fontWeight : 600, width : {md : 'fit-content', xs : 'fit-content'}, height: {md : '40px', xs : '25px'}, fontSize : '10px' }} > Cược TA88 </Button>
         </Link>

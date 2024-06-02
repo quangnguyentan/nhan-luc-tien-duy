@@ -51,13 +51,13 @@ function CustomGrid({ size, flexDirectionStyle, headerBox }) {
     const date = new Date(dateString);
     const formattedDate = `${date.getDate()}/${date.getMonth() + 1}`;
     return formattedDate
-   } else{
+   } else {
     const date = new Date();
-    const formattedDate = `${date.getDate()}/${date.getMonth() + 1}`;
+    const formattedDate = `${date.getHours()}:${date.getMinutes()} - ${date.getDate()}/${date.getMonth() + 1}`;
     return formattedDate
    }
  }
- 
+
   
 
   return (
@@ -184,11 +184,7 @@ function CustomGrid({ size, flexDirectionStyle, headerBox }) {
                   </Typography>
                 </Box>
                 
-                  <Box sx={{ flexDirection : 'column',overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      display: '-webkit-box',
-                      WebkitLineClamp: '1',
-                      WebkitBoxOrient: 'vertical', }}>
+                  <Box sx={{ flexDirection : 'column' }}>
                     <Typography sx={{ fontSize : '15px', fontWeight : 600 }} >
                       {el?.start_time?.slice(0, -3)} - {convertDate(el?.start_date)}
                     </Typography>
@@ -211,7 +207,7 @@ function CustomGrid({ size, flexDirectionStyle, headerBox }) {
                   <Divider  sx={{ border : '1', borderColor : 'white' }}/>
                   <Box sx={{ p : 1, color : 'white',  display : 'flex', alignItems : 'center', justifyContent : 'space-between', px : 2, }}>
                   <Typography sx={{ fontSize : '15px', fontWeight : 600 }}>
-                    Chưa diễn ra 
+                    {convertDate() ===  el?.start_time?.slice(0, -3) - convertDate(el?.start_date) ? 'Đang diễn ra ' : 'Chưa diễn ra' }
                   </Typography>
                   <Link to={linkSetBit} style={{ textDecoration : 'none' }}>
                     <Chip label='Đặt Cược' className='button_info' sx={{ borderRadius : '10px', fontWeight : 600, width : '90px', height: '30px', fontSize : '10px' }} />
