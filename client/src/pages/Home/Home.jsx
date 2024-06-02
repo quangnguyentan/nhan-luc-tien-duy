@@ -14,33 +14,32 @@ import { apiGetADS } from '../../services/adsService'
 function Home() { 
  
   const [posts, setPosts] = useState('')
-  // const [ads, setAds] = useState('')
+  const [ads, setAds] = useState('')
 
-  // const apiGetAllADS = async() => {
-  //   const response = await apiGetADS()
-  //   if(response?.success) {
-  //     const filter = response?.ads?.filter(f => f?.root_domain === "sovo.link" && f?.position === "START_VIDEO" )?.map(el => {
-  //       return el
-  //     })
-  //     setAds(filter[0])
-  //   }
-  // }
-  // useEffect(() => {
-  //   apiGetAllADS()
-  // }, [])
-  // console.log(ads)
+  const apiGetAllADS = async() => {
+    const response = await apiGetADS()
+    if(response?.success) {
+      const filter = response?.ads?.filter(f => f?.root_domain === "sovo.link")?.map(el => {
+        return el
+      })
+      setAds(filter)
+    }
+  }
+  
+  
   const apiGetPost = async () => {
     const response = await apiGetPosts()
     if(response.success) setPosts(response?.post)
   }
+  
   useEffect(() => {
     window.scrollTo(0, 0)
-    apiGetPost()
+    apiGetPost() && apiGetAllADS()
   }, [])
   return (
       <Container fixed disableGutters sx={{ height : (theme) => theme.football.cardVideoHeight, width : { md : '70%', xs : '100%'} }}>
         <Box sx={{ p : { md : 0, xs : 0}, m : { md : 0, xs : 0} }}>
-        <CardVideo titleContent blv/>
+        {ads && <CardVideo data={ads} titleContent blv/>}
         </Box>
         <Box sx={{ width : '100%',bgcolor : '#000000', px : 4, borderRadius : '15px ' }}>
           <Box sx={{ py : 2,justifyContent : 'center'}} className='tran_hot_banner'>

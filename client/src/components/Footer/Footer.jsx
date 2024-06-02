@@ -11,7 +11,7 @@ function Footer() {
   const style = {
     position: 'fixed',
     bottom : 0,
-    zIndex : 1,
+    zIndex : 2,
     left: '65%',
     transform: { md :  'translate(-50%, -100%)', xs :  'translate(-60%, -30%)'},
     width: '50px',

@@ -55,8 +55,8 @@ function Public() {
    
     <Outlet/>
     <Box sx={{ flexDirection : 'column', display : { md : 'flex', sm : 'none', xs : 'none'}, height : '100%' }}>
-        <img src={BannerRight} alt=""style={{ position : 'fixed', right : '5%', top : '15%', height : '40%' }}/>
-        <img src={BannerRight} alt=""style={{ position : 'fixed', right : '5%', bottom :  '5%' , height : '40%'}}/>
+        <img src={BannerLeft} alt=""style={{ position : 'fixed', right : '5%', top : '15%', height : '40%' }}/>
+        <img src={BannerLeft} alt=""style={{ position : 'fixed', right : '5%', bottom :  '5%' , height : '40%'}}/>
     </Box>
    </Box>
     <Box sx={{ height : (theme) => theme.football.FOOTER_BANNER_HEIGHT}}>

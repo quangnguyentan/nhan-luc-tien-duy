@@ -1,6 +1,6 @@
 
 import { Box, Button, Container, Modal, Typography } from "@mui/material";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { Bounce, ToastContainer } from "react-toastify";
 import Public from "./pages/Public/Public";
 import path from "./utils/path";
@@ -15,6 +15,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import popup from './assets/popup.gif'
 function App() {
   const [open, setOpen] = React.useState(false);
+  const location = useLocation()
   const style = {
     position: 'absolute',
     top: '50%',
@@ -25,8 +26,8 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setOpen(true);
-    }, 1000) // Mở modal khi trang được tải
-  }, []); // [] là mảng dependencies rỗng, nghĩa là sẽ chỉ gọi hàm useEffect này một lần sau khi component được mount
+    }, 500) // Mở modal khi trang được tải
+  }, [location]); // [] là mảng dependencies rỗng, nghĩa là sẽ chỉ gọi hàm useEffect này một lần sau khi component được mount
 
   const handleClose = () => {
     setOpen(false);

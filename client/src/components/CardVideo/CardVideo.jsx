@@ -18,7 +18,7 @@ import { apiGetADS } from '../../services/adsService'
 
 import bannerLeft from '../../assets/banner_header_left.gif'
 import bannerRight from '../../assets/banner_header_right.gif'
-function CardVideo({ ChatBox, titleContent,blv }) {
+function CardVideo({ ChatBox, titleContent,blv, data }) {
   const [ads, setAds] = useState('')
   const chatBoxIframe =  <Box sx={{   width : { md : "30%", xs : "100%"}, height : { md : "470px", xs : "350px"}  }}>
   <iframe src="https://www5.cbox.ws/box/?boxid=949782&boxtag=pXQtQ5" width="100%" height="100%" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>	

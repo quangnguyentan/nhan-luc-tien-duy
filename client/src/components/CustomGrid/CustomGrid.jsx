@@ -72,9 +72,9 @@ function CustomGrid({ size, flexDirectionStyle, headerBox }) {
             {matches && matches?.slice(0, 3)?.map((el) => (
                  <>
                  {account && account?.filter(acc => acc?.id === el?.account_id)?.map(result => (
-                  <Grid item xs={2} sm={4} md={12} key={el?.id} sx={{ pb : 1 }}>
-                  <Link to={{ pathname : `/video/${el?.slug}`, search : `?idMatches=${el?.id}&idAccount=${result?.id}`}} style={{ textDecoration : 'none' }} >
-                  <Item sx={{ borderRadius: '10px', border : 1, borderColor : 'white', p : 0, flexDirection : 'column', height: 'fit-content', cursor : 'pointer', '&:hover' : {
+                  <Grid  item xs={2} sm={4} md={12} key={el?.id} sx={{ pb : 1 }}>
+                  <Link  to={{ pathname : `/video/${el?.slug}`, search : `?idMatches=${el?.id}&idAccount=${result?.id}`}} style={{ textDecoration : 'none' }} >
+                  <Item key={el?.id}  sx={{ borderRadius: '10px', border : 1, borderColor : 'white', p : 0, flexDirection : 'column', height: 'fit-content', cursor : 'pointer', '&:hover' : {
                   transform : 'translateY(-3px)',
                   transitionDuration : '5s'
                 } }}>
@@ -128,8 +128,8 @@ function CustomGrid({ size, flexDirectionStyle, headerBox }) {
                   </Link>
                   </Box>
                  </Box>
-            </Item>
-          </Link>
+                  </Item>
+                  </Link>
                   </Grid>
                   ))}
                  </>
@@ -145,7 +145,7 @@ function CustomGrid({ size, flexDirectionStyle, headerBox }) {
                  {account && account?.filter(acc => acc?.id === el?.account_id)?.map(result => (
                     <Grid item xs={2} sm={4} md={4} key={el?.id}>
                   <Link to={{ pathname : `/video/${el?.slug}`, search : `?idMatches=${el?.id}&idAccount=${result?.id}`}} style={{ textDecoration : 'none' }} >
-                  <Item sx={{  borderRadius: '10px', border : 1, borderColor : 'white', p : 0, flexDirection : 'column', height: 'fit-content', cursor : 'pointer', '&:hover' : {
+                  <Item key={el?.id} sx={{  borderRadius: '10px', border : 1, borderColor : 'white', p : 0, flexDirection : 'column', height: 'fit-content', cursor : 'pointer', '&:hover' : {
                   transform : 'translateY(-3px)',
                   transitionDuration : '5s'
                 } }}>
