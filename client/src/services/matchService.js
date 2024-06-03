@@ -4,7 +4,7 @@ export const apiGetMatches = () =>
     try {
       const response = await axiosConfig({
         method: "GET",
-        url: "/api/matches/",
+        url: "/matches/",
       });
       resolve(response);
     } catch (error) {
@@ -16,7 +16,7 @@ export const apiGetMatchesById = (id) =>
       try {
         const response = await axiosConfig({
           method: "GET",
-          url: `/api/matches/${id}`,
+          url: `/matches/${id}`,
         });
         resolve(response);
       } catch (error) {

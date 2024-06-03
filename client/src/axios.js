@@ -1,6 +1,6 @@
 import axios from "axios";
 const instance = axios.create({
-  baseURL: 'https://sovo2.link/',
+  baseURL: 'https://sovo2.link/api',
 });
 instance.interceptors.request.use(
   function (config) {

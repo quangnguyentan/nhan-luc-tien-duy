@@ -4,7 +4,7 @@ export const apiGetAccount = () =>
     try {
       const response = await axiosConfig({
         method: "GET",
-        url: "/api/account/",
+        url: "/account/",
       });
       resolve(response);
     } catch (error) {
@@ -16,7 +16,7 @@ export const apiGetAccountById = (id) =>
       try {
         const response = await axiosConfig({
           method: "GET",
-          url: `/api/account/${id}`,
+          url: `/account/${id}`,
         });
         resolve(response);
       } catch (error) {

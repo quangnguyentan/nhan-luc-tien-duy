@@ -4,7 +4,7 @@ export const apiGetADS = () =>
     try {
       const response = await axiosConfig({
         method: "GET",
-        url: "/api/ads/",
+        url: "/ads/",
       });
       resolve(response);
     } catch (error) {
@@ -16,7 +16,7 @@ export const apiGetADSById = (id) =>
       try {
         const response = await axiosConfig({
           method: "GET",
-          url: `/api/ads/${id}`,
+          url: `/ads/${id}`,
         });
         resolve(response);
       } catch (error) {

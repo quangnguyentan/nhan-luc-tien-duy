@@ -4,7 +4,7 @@ export const apiGetPosts = () =>
     try {
       const response = await axiosConfig({
         method: "GET",
-        url: "/api/post/",
+        url: "/post/",
       });
       resolve(response);
     } catch (error) {
@@ -16,7 +16,7 @@ export const apiGetPostsById = (id) =>
       try {
         const response = await axiosConfig({
           method: "GET",
-          url: `/api/post/${id}`,
+          url: `/post/${id}`,
         });
         resolve(response);
       } catch (error) {

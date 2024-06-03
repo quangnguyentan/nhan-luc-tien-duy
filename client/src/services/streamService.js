@@ -4,7 +4,7 @@ export const apiGetStream = () =>
     try {
       const response = await axiosConfig({
         method: "GET",
-        url: "/api/stream/",
+        url: "/stream/",
       });
       resolve(response);
     } catch (error) {
@@ -16,7 +16,7 @@ export const apiGetStreamById = (id) =>
       try {
         const response = await axiosConfig({
           method: "GET",
-          url: `/api/stream/${id}`,
+          url: `/stream/${id}`,
         });
         resolve(response);
       } catch (error) {
