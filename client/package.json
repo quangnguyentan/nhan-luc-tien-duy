@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "homepage": "https://sovo2.link",
-  "proxy":"http://localhost:8080/api",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
