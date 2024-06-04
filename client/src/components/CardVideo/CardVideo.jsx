@@ -127,7 +127,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   let interval = 6;
   let timeArrow = 31;
   const [time, setTime] = useState(null);
-  const [hiddenButton, setHiddenButton] = useState(false)
+  const [hiddenButton, setHiddenButton] = useState(false);
   const [timeNext, setTimeNext] = useState(null);
   const changeTime = () => {
     interval--;
@@ -168,47 +168,47 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   //        clearInterval(timeNextArrow)
   //      })
   //  }, [])
-  const [visible, setVisible] = useState(false)
-  var videos = document.querySelectorAll("video");
+  const [visible, setVisible] = useState(false);
+  // var videos = document.querySelectorAll("video");
 
-  videos.forEach(function (video, index) {
-    var videoSrc = getVideoSrc(index); // Hàm này để lấy URL của video tương ứng
-    if (Hls.isSupported()) {
-      var hls = new Hls();
-      hls.loadSource(videoSrc);
-      hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, function () {
-        video.play();
-      });
-    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = videoSrc;
-    }
-  });
+  // videos.forEach(function (video, index) {
+  //   var videoSrc = getVideoSrc(index); // Hàm này để lấy URL của video tương ứng
+  //   if (Hls.isSupported()) {
+  //     var hls = new Hls();
+  //     hls.loadSource(videoSrc);
+  //     hls.attachMedia(video);
+  //     hls.on(Hls.Events.MANIFEST_PARSED, function () {
+  //       video.play();
+  //     });
+  //   } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+  //     video.src = videoSrc;
+  //   }
+  // });
 
-  function getVideoSrc(index) {
-    // Trả về URL của video tương ứng với index
-    switch (index) {
-      case 0:
-        return "https://10407a55ad3.vws.vegacdn.vn/live/_definst_/stream_9_3cc1894f/playlist.m3u8";
-      default:
-        return `${ads?.file_url}`;
-    }
+  // function getVideoSrc(index) {
+  //   // Trả về URL của video tương ứng với index
+  //   switch (index) {
+  //     case 0:
+  //       return "https://10407a55ad3.vws.vegacdn.vn/live/_definst_/stream_9_3cc1894f/playlist.m3u8";
+  //     default:
+  //       return `${ads?.file_url}`;
+  //   }
+  // }
+  console.log(ads?.file_url);
+  var video = document.getElementById("video");
+  let videoSrc =
+    "https://10407a55ad3.vws.vegacdn.vn/live/_definst_/stream_9_3cc1894f/playlist.m3u8";
+
+  if (Hls.isSupported()) {
+    var hls = new Hls();
+    hls.loadSource(videoSrc);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, function () {
+      video.play();
+    });
+  } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+    video.src = videoSrc;
   }
-  console.log(ads?.file_url)
-  // var video = document.getElementById('video')
-  // var videoSrc = 'https://10407a55ad3.vws.vegacdn.vn/live/_definst_/stream_9_3cc1894f/playlist.m3u8';
-  // if (Hls.isSupported()) {
-  //   var hls = new Hls();
-  //   hls.loadSource(videoSrc);
-  //   hls.attachMedia(video);
-  //   hls.on(Hls.Events.MANIFEST_PARSED, function () {
-  //     video.play();
-  //   });
-
-  // }
-  // else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-  //   video.src = videoSrc;
-  // }
 
   return (
     <Box
@@ -402,95 +402,102 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
             height: "100%",
           }}
         >
-         {hiddenButton &&  <Box
-            sx={{
-              position: "relative ",
-              display: "flex",
-              width: { md: "100%", xs: "100%" },
-              justifyContent: "space-between",
-            }}
-          >
-            {/* {changeSource !== sources.bunnyTrailer && <Button variant="contained" style={{ position : 'absolute', zIndex : 1, 
+          {!hiddenButton && (
+            <Box
+              sx={{
+                position: "relative ",
+                display: "flex",
+                width: { md: "100%", xs: "100%" },
+                justifyContent: "space-between",
+              }}
+            >
+              {/* {changeSource !== sources.bunnyTrailer && <Button variant="contained" style={{ position : 'absolute', zIndex : 1, 
         color : 'white', fontSize : '10px', textTransform : 'capitalize', cursor : 'default',
         right : { md : '68%'}, width : 'fit-cotent', margin : '10px',  height: '30px', backgroundColor : 'black' }}>Video sẽ tự động bỏ qua sau {timeNext}</Button>} */}
-            {ads && stream ? (
-              time === 0 || time === undefined ? (
-                <Button
-                  endIcon={<SkipNextIcon />}
-                  onClick={() => {
-                    setVisible(true)
-                    setHiddenButton(true)
-                  }}
-                  variant="contained"
-                  style={{
-                    position: "absolute",
-                    zIndex: 1,
-                    color: "white",
-                    fontSize: "10px",
-                    textTransform: "capitalize",
-                    cursor: "pointer",
-                    right: 10,
-                    width: "fit-content",
-                    margin: "25px",
-                    height: "30px",
-                    backgroundColor: "black",
-                  }}
-                >
-                  Bỏ qua{" "}
-                </Button>
+              {ads && stream ? (
+                time === 0 || time === undefined ? (
+                  <Button
+                    endIcon={<SkipNextIcon />}
+                    onClick={() => {
+                      setVisible(true);
+                      setHiddenButton(true);
+                    }}
+                    variant="contained"
+                    style={{
+                      position: "absolute",
+                      zIndex: 1,
+                      color: "white",
+                      fontSize: "10px",
+                      textTransform: "capitalize",
+                      cursor: "pointer",
+                      right: 10,
+                      width: "fit-content",
+                      margin: "25px",
+                      height: "30px",
+                      backgroundColor: "black",
+                    }}
+                  >
+                    Bỏ qua{" "}
+                  </Button>
+                ) : (
+                  <Button
+                    endIcon={<SkipNextIcon />}
+                    variant="contained"
+                    style={{
+                      position: "absolute",
+                      zIndex: 1,
+                      color: "white",
+                      fontSize: "10px",
+                      textTransform: "capitalize",
+                      cursor: "default",
+                      right: 10,
+                      width: "fit-content",
+                      margin: "25px",
+                      height: "30px",
+                      backgroundColor: "black",
+                    }}
+                  >
+                    Có thể bỏ qua {time}
+                  </Button>
+                )
               ) : (
-                <Button
-                  endIcon={<SkipNextIcon />}
-                  variant="contained"
-                  style={{
-                    position: "absolute",
-                    zIndex: 1,
-                    color: "white",
-                    fontSize: "10px",
-                    textTransform: "capitalize",
-                    cursor: "default",
-                    right: 10,
-                    width: "fit-content",
-                    margin: "25px",
-                    height: "30px",
-                    backgroundColor: "black",
-                  }}
-                >
-                  Có thể bỏ qua {time}
-                </Button>
-              )
-            ) : (
-              ""
-            )}
-          </Box>}
+                ""
+              )}
+            </Box>
+          )}
 
           <Box sx={{ width: "100%", height: "100%" }}>
-           
-            {visible ? <Box sx={{ display : visible ? 'none' : 'flex' } }>
+            {/* <Box sx={{ display : visible ? 'none' : 'flex' } }>
               {allStream && matches && allStream
                   ?.filter((el) => el?.match_id === matches[0]?.id)
                   ?.map((rs) => (
                     <Box>
+
                     
-                     <video
-              id="video"
-              type="application/x-mpegURL"
-              crossOrigin="anonymous"
-              class="videoCentered"
-              width="100%"
-              height="380"
-              muted
-              autoplay
-              src= {rs?.m3u8_url}
-            ></video>
-                    </Box>
-                  ))}
-            </Box> : <Box >
-            {ads && (
+                    </Box> */}
+
+            {visible && (
+              <video
+                id="video"
+                type="application/x-mpegURL"
+                crossOrigin="anonymous"
+                class="videoCentered"
+                width="100%"
+                height="380"
+                muted
+                autoplay
+              ></video>
+            )}
+
+            {!visible && ads && (
               <Player
                 width="100%"
                 height="100%"
-                src={ads?.file_url}
+                src={
+                  ads?.file_url
+                    ? ads?.file_url
+                    : "https://sovotv.live/uploads/resources/videos/67aee69f05e555769b7c925b6d36aeb7.mp4"
+                }
                 autoPlay
                 className="customIcon"
               >
@@ -507,10 +514,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                 <LoadingSpinner />
               </Player>
             )}
-            </Box>
- }
-           
-           
+
             <Box
               sx={{
                 position: "relative",
