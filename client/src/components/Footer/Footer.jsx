@@ -30,11 +30,11 @@ function Footer() {
         </Box>
         
           <Container sx={{ display : 'flex', justifyContent : 'center' }} >
-          <Box sx={{  display : { md : 'flex', xs : 'flex' }, width : { objectFit : 'contain', xs : '350px', md : '600px'}, height : { xs : '50px', md : '80px'} }}>
-              <img src={bannerFooterLeft} alt="" style={{ position: "fixed", bottom : 0, height : 'inherit', width : 'inherit', zIndex : 1 }} />
+          <Box sx={{ flexDirection : { xs : 'column', md : 'row'}, display : { md : 'flex', xs : 'flex' },width : {  xs : '150px', md : '600px'}, height : { xs : '50px', md : '80px'} }}>
+              <img src={bannerFooterLeft} alt="" style={{ objectFit : 'inherit', position: "fixed", bottom : 0, height : 'inherit', width : 'inherit', zIndex : 1}} />
             </Box>
-            <Box sx={{  display : { md : 'flex', xs : 'none'}, width : { objectFit : 'contain',xs : '350px',md : '600px'}, height : { xs : '50px',md : '80px'} }}>
-              <img src={bannerFooterRight} alt="" style={{ position: "fixed", bottom : 0, height : 'inherit', width : 'inherit', left : '50%', zIndex : 1  }} />
+            <Box sx={{  flexDirection : { xs : 'column', md : 'row'}, display : { md : 'flex', xs : 'flex'}, width : { xs : '150px',md : '600px'}, height : { xs : '50px', md : '80px'} }}>
+              <img src={bannerFooterRight} alt="" style={{ objectFit  : 'inherit', position: "fixed", bottom : 0, height : 'inherit', width : 'inherit', left : '50%', zIndex : 1  }} />
             </Box>
           </Container>
         

@@ -3,7 +3,7 @@ import { isAdmin, verifyToken } from "../middlewares/verifyToken";
 import * as streamController from "../controller/stream";
 const router = require("express").Router();
 router.get("/",  streamController.getAllStream)
-router.get("/:id",  streamController.getStreamById);
+router.get("/:idStream",  streamController.getStreamById);
 
 
 module.exports = router;
