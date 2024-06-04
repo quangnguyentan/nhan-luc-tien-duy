@@ -127,6 +127,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   let interval = 6;
   let timeArrow = 31;
   const [time, setTime] = useState(null);
+  const [hiddenButton, setHiddenButton] = useState(false)
   const [timeNext, setTimeNext] = useState(null);
   const changeTime = () => {
     interval--;
@@ -167,7 +168,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   //        clearInterval(timeNextArrow)
   //      })
   //  }, [])
-
+  const [visible, setVisible] = useState(false)
   var videos = document.querySelectorAll("video");
 
   videos.forEach(function (video, index) {
@@ -401,7 +402,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
             height: "100%",
           }}
         >
-          <Box
+         {hiddenButton &&  <Box
             sx={{
               position: "relative ",
               display: "flex",
@@ -416,7 +417,10 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
               time === 0 || time === undefined ? (
                 <Button
                   endIcon={<SkipNextIcon />}
-                  onClick={() => setAds(stream[0]?.m3u8_url)}
+                  onClick={() => {
+                    setVisible(true)
+                    setHiddenButton(true)
+                  }}
                   variant="contained"
                   style={{
                     position: "absolute",
@@ -458,17 +462,17 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
             ) : (
               ""
             )}
-          </Box>
+          </Box>}
 
           <Box sx={{ width: "100%", height: "100%" }}>
-            {/* {allStream
+           
+            {visible ? <Box sx={{ display : visible ? 'none' : 'flex' } }>
+              {allStream && matches && allStream
                   ?.filter((el) => el?.match_id === matches[0]?.id)
                   ?.map((rs) => (
                     <Box>
-                     
-                    </Box>
-                  ))} */}
-            <video
+                    
+                     <video
               id="video"
               type="application/x-mpegURL"
               crossOrigin="anonymous"
@@ -476,10 +480,12 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
               width="100%"
               height="380"
               muted
-              controls
               autoplay
+              src= {rs?.m3u8_url}
             ></video>
-           
+                    </Box>
+                  ))}
+            </Box> : <Box >
             {ads && (
               <Player
                 width="100%"
@@ -501,7 +507,10 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                 <LoadingSpinner />
               </Player>
             )}
-
+            </Box>
+ }
+           
+           
             <Box
               sx={{
                 position: "relative",
