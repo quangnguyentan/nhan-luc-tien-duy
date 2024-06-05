@@ -29,6 +29,10 @@ body {
   justify-content: end;
  
 }
+#my-video{
+  width: 100%;
+  height: 400px;
+}
 
 /* .css-uwwqev .video-react-fullscreen {
   background-image: url('https://tructiep2.dauphong2.live/wp-content/uploads/2024/05/CPD_Logo_290x108.gif');

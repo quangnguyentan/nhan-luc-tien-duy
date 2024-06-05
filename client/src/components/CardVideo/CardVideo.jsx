@@ -3,7 +3,7 @@ import ReactHlsPlayer from "react-hls-player";
 import Box from "@mui/material/Box";
 import CustomGrid from "../CustomGrid/CustomGrid";
 import BannerBottomVideo from "../../assets/banner_video.gif";
-
+import { Helmet } from "react-helmet";
 import BannerVideoFooter from "../../assets/bannerVideoFooter.gif";
 import {
   Player,
@@ -34,6 +34,7 @@ import { apiGetADS } from "../../services/adsService";
 import bannerLeft from "../../assets/banner_header_left.gif";
 import bannerRight from "../../assets/banner_header_right.gif";
 import { apiGetStream, apiGetStreamById } from "../../services/streamService";
+import videojs from "video.js";
 function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   const [ads, setAds] = useState("");
   const [adsSetting, setAdsSetting] = useState("");
@@ -59,6 +60,18 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
       ></iframe>
     </Box>
   );
+  // useEffect(() => {
+  //   const script = document.createElement("script");
+
+  //   script.src = "https://vjs.zencdn.net/8.10.0/video.min.js";
+  //   script.async = true;
+  //   document.body.appendChild(script);
+
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
+
   const apiGetByIDStream = async (idStr) => {
     const response = await apiGetStreamById(idStr);
     console.log(response);
@@ -171,51 +184,44 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   //        clearInterval(timeNextArrow)
   //      })
   //  }, [])
+ const handleClick = () => {
+  
+  const video = document.getElementById('my-video');
+  const adSkipButton = document.getElementById('ad-skip-button');
+
+  const handleAdSkip = () => {
+    video.play();
+  };
+  return () => {
+  
+    adSkipButton.removeEventListener('click', handleAdSkip);
+  };
+ 
+ }
   const [visible, setVisible] = useState(false);
-  // if(window.location.reload()){
+  useEffect(() => {
+     
+  
+     
+    const script = document.createElement('script');
+    console.log(script)
+    script.src = 'https://vjs.zencdn.net/8.10.0/video.min.js';
+    script.async = true;
+    document.body.appendChild(script);
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
 
-  // }
-  // var videos = document.querySelectorAll("video");
+    window.addEventListener('popstate', handleLocationChange);
+    handleClick()
+    // Cleanup function
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      document.body.removeChild(script);
 
-  // videos.forEach(function (video, index) {
-  //   var videoSrc = getVideoSrc(index); // Hàm này để lấy URL của video tương ứng
-  //   if (Hls.isSupported()) {
-  //     var hls = new Hls();
-  //     hls.loadSource(videoSrc);
-  //     hls.attachMedia(video);
-  //     hls.on(Hls.Events.MANIFEST_PARSED, function () {
-  //       video.play();
-  //     });
-  //   } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-  //     video.src = videoSrc;
-  //   }
-  // });
-
-  // function getVideoSrc(index) {
-  //   // Trả về URL của video tương ứng với index
-  //   switch (index) {
-  //     case 0:
-  //       return "https://10407a55ad3.vws.vegacdn.vn/live/_definst_/stream_9_3cc1894f/playlist.m3u8";
-  //     default:
-  //       return `${ads?.file_url}`;
-  //   }
-  // }
-  // console.log(ads?.file_url);
-  // var video = document.getElementById("video");
-  // let videoSrc =
-  //   "https://10407a55ad3.vws.vegacdn.vn/live/_definst_/stream_9_3cc1894f/playlist.m3u8";
-
-  // if (Hls.isSupported()) {
-  //   var hls = new Hls();
-  //   hls.loadSource(videoSrc);
-  //   hls.attachMedia(video);
-  //   hls.on(Hls.Events.MANIFEST_PARSED, function () {
-  //     video.play();
-  //   });
-  // } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-  //   video.src = videoSrc;
-  // }
-
+    };
+   
+  }, [handleClick]);
   return (
     <Box
       sx={{ py: { height: "fit-content", md: 0, xs: 0, bgcolor: "#1B1C21" } }}
@@ -423,6 +429,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
               {ads && stream ? (
                 time === 0 || time === undefined ? (
                   <Button
+                    id="ad-skip-button"
                     endIcon={<SkipNextIcon />}
                     onClick={() => {
                       setVisible(true);
@@ -443,12 +450,13 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                       backgroundColor: "black",
                     }}
                   >
-                    Bỏ qua{" "}
+                    Bỏ qua
                   </Button>
                 ) : (
                   <Button
                     endIcon={<SkipNextIcon />}
                     variant="contained"
+      
                     style={{
                       position: "absolute",
                       zIndex: 1,
@@ -461,6 +469,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                       margin: "25px",
                       height: "30px",
                       backgroundColor: "black",
+
                     }}
                   >
                     Có thể bỏ qua {time}
@@ -513,14 +522,16 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
               <video
                 id="my-video"
                 class="video-js"
-                controls
-                preload="auto"
-                width="640"
-                height="264"
+                width="100%"
+                height="100%"
+                autoPlay
                 poster="MY_VIDEO_POSTER.jpg"
                 data-setup="{}"
               >
-              <source src={stream[0]?.m3u8_url} type="application/x-mpegURL" />
+                <source
+                  src={stream[0]?.m3u8_url}
+                  type="application/x-mpegURL"
+                />
               </video>
             )}
             {!visible && ads && (
