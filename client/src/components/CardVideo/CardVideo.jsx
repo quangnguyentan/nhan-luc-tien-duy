@@ -514,7 +514,6 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                 height="100%"
                 autoPlay
                 controls
-                
                 poster="MY_VIDEO_POSTER.jpg"
                 data-setup="{}"
               >

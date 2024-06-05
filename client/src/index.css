@@ -22,6 +22,7 @@ body {
   width: 100%;
   height: 100%;
 }
+
 .video-react-control-bar:last-child{
   top : 0;
   background: #1B1C21;  
@@ -29,9 +30,13 @@ body {
   justify-content: end;
  
 }
+.video-js{
+  background-color: none;
+}
 #my-video{
   width: 100%;
-  height: 400px;
+  height: 300px;
+  
 }
 
 /* .css-uwwqev .video-react-fullscreen {

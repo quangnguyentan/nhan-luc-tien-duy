@@ -12,12 +12,7 @@ function AppBar() {
     <Box sx={{ height : (theme) =>theme.football.appBarHeight, width: '100%', overflowY : 'hidden', overflowX: 'auto', '&::webkit-scrollbar-track' : {
       m : 2
     }, backgroundColor : '#2b2b2b' , px : { sm : 0, md : 2, xs : 1, lg : 32}, display : 'flex', alignItems : 'center', justifyContent : 'space-between'  }} >
-          <Link onClick={()=> {
-            window.location.href = "/"
-            setTimeout(() => {
-              window.location.reload();
-            },200)
-          }}  >
+          <Link to="/" >
             <img src={logo} style={{ objectFit : 'cover', minWidth : '160px' }} alt="logo"  width={200} height={70}  />
           </Link>
           <Menu/>

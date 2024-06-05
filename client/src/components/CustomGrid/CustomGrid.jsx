@@ -76,27 +76,18 @@ function CustomGrid({
     if (response.success) setStream(response?.stream);
   };
   const checkOnlStream = () => {
-    let rs = [];
+  let rs = [];
     if (stream && matches) {
       matches?.filter((el) => {
         rs.push(el?.id);
       });
-      const filterStream = stream?.filter((el) => {
-        if( rs.includes(el?.match_id)){
-          return el?.match_id
-        }
-      });
+      return stream?.filter((el) => rs.includes(el?.match_id));
 
-     return filterStream
-      //  console.log(filterStream)
-      //  const filter =  filterStream?.map((el) => {
-      //   console.log(el === true)
-      //  } )
-      //  console.log(filter)
     }
   };
-  
-
+  const ls = []
+  checkOnlStream()?.filter(rs => (ls.push(rs?.match_id)))
+  console.log(ls);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Box
@@ -571,11 +562,7 @@ function CustomGrid({
                         ?.map((result) => (
                           <Grid item xs={2} sm={4} md={4} key={el?.id}>
                             <Link
-                              onClick={() => {
-                                setTimeout(() => {
-                                  window.location.reload();
-                                }, 100);
-                              }}
+                             
                               replace
                               to={{
                                 pathname: `/video/${el?.id}/${result?.id}/${el?.slug}`,
@@ -754,9 +741,7 @@ function CustomGrid({
                                     <Typography
                                       sx={{ fontSize: "15px", fontWeight: 600 }}
                                     >
-                                      {checkOnlStream()
-                                        ? "Đang diễn ra "
-                                        : "Chưa diễn ra"}
+                                      {ls?.includes(el?.id) ? "Đang diễn ra" : "Chưa diễn ra"}
                                     </Typography>
                                     <Link
                                       target="_blank"
