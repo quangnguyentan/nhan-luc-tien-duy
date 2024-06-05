@@ -184,43 +184,33 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   //        clearInterval(timeNextArrow)
   //      })
   //  }, [])
- const handleClick = () => {
-  
-  const video = document.getElementById('my-video');
-  const adSkipButton = document.getElementById('ad-skip-button');
-
-  const handleAdSkip = () => {
-    video.play();
+  const handleClick = () => {
+    const video = document.getElementById("my-video");
+    const adSkipButton = document.getElementById("ad-skip-button");
+    const handleAdSkip = () => {
+      video.play();
+    };
+    return () => {
+      adSkipButton.removeEventListener("click", handleAdSkip);
+    };
   };
-  return () => {
-  
-    adSkipButton.removeEventListener('click', handleAdSkip);
-  };
- 
- }
   const [visible, setVisible] = useState(false);
   useEffect(() => {
-     
-  
-     
-    const script = document.createElement('script');
-    console.log(script)
-    script.src = 'https://vjs.zencdn.net/8.10.0/video.min.js';
+    const script = document.createElement("script");
+    script.src = "https://vjs.zencdn.net/8.10.0/video.min.js";
     script.async = true;
     document.body.appendChild(script);
     const handleLocationChange = () => {
       setCurrentPath(window.location.pathname);
     };
 
-    window.addEventListener('popstate', handleLocationChange);
-    handleClick()
+    window.addEventListener("popstate", handleLocationChange);
+    handleClick();
     // Cleanup function
     return () => {
-      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener("popstate", handleLocationChange);
       document.body.removeChild(script);
-
     };
-   
   }, [handleClick]);
   return (
     <Box
@@ -456,7 +446,6 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                   <Button
                     endIcon={<SkipNextIcon />}
                     variant="contained"
-      
                     style={{
                       position: "absolute",
                       zIndex: 1,
@@ -469,7 +458,6 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                       margin: "25px",
                       height: "30px",
                       backgroundColor: "black",
-
                     }}
                   >
                     Có thể bỏ qua {time}
@@ -525,6 +513,8 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                 width="100%"
                 height="100%"
                 autoPlay
+                controls
+                
                 poster="MY_VIDEO_POSTER.jpg"
                 data-setup="{}"
               >
