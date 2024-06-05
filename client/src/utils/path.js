@@ -4,6 +4,6 @@ const path = {
   TOP_NHA_CAI : "top-nha-cai",
   SOI_KEO : "soi-keo",
   POST : "news/:id",
-  VIDEO : "video/:idStream",
+  VIDEO : "video/:idMatches/:idAccount/:slug",
 };
 export default path;

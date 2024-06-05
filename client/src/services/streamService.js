@@ -11,12 +11,12 @@ export const apiGetStream = () =>
       reject(error);
     }
   });
-export const apiGetStreamById = (id) =>
+export const apiGetStreamById = (idMatches) =>
     new Promise(async (resolve, reject) => {
       try {
         const response = await axiosConfig({
           method: "GET",
-          url: `/stream/${id}`,
+          url: `/stream/${idMatches}`,
         });
         resolve(response);
       } catch (error) {

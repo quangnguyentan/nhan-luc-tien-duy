@@ -1,4 +1,5 @@
 import ReactPlayer from "react-player";
+import ReactHlsPlayer from "react-hls-player";
 import Box from "@mui/material/Box";
 import CustomGrid from "../CustomGrid/CustomGrid";
 import BannerBottomVideo from "../../assets/banner_video.gif";
@@ -19,7 +20,7 @@ import { useEffect, useState } from "react";
 import backgroundHeaderTitle from "../../assets/backgroundTitle.webp";
 import { apiGetAccountById } from "../../services/accountService";
 import { apiGetMatchesById } from "../../services/matchService";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, unstable_HistoryRouter, useLocation, useParams } from "react-router-dom";
 import { Chip, Container, Grid, Typography } from "@mui/material";
 import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
 import { apiGetADS } from "../../services/adsService";
@@ -52,9 +53,9 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
       ></iframe>
     </Box>
   );
-
   const apiGetByIDStream = async (idStr) => {
     const response = await apiGetStreamById(idStr);
+    console.log(response)
     if (response?.success) setStream(response?.streamId);
   };
 
@@ -82,16 +83,10 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   useEffect(() => {
     apiGetAllADS();
   }, []);
-
+ const {idMatches, idAccount } = useParams()
   const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  const ids = params.get("idMatches");
-  const idStr = params.get("idStream");
-  const idAccount = params.get("idAccount");
-
   const [matches, setMatches] = useState("");
   const [account, setAccount] = useState("");
-
   const apiGetAccount = async (ids) => {
     const response = await apiGetAccountById(ids);
     if (response.success) setAccount(response?.accountId);
@@ -112,8 +107,9 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
     if (response.success) setMatches(response?.matchesId);
   };
   useEffect(() => {
-    window.scrollTo(0, 0);
-    apiGetMatches(ids) && apiGetAccount(idAccount) & apiGetByIDStream(idStr);
+    if(location.pathname.slice(0, 2) !== "/"){
+      apiGetMatches(idMatches) && apiGetAccount(idAccount) & apiGetByIDStream(Number(idMatches));
+    }
   }, []);
   const styles = {
     heroContainer: {
@@ -150,6 +146,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
     apiGetAllStream();
   }, []);
 
+
   useEffect(() => {
     const timeInterVal = setInterval(() => {
       const newTime = changeTime();
@@ -169,6 +166,9 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   //      })
   //  }, [])
   const [visible, setVisible] = useState(false);
+  // if(window.location.reload()){
+
+  // }
   // var videos = document.querySelectorAll("video");
 
   // videos.forEach(function (video, index) {
@@ -209,7 +209,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   // } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
   //   video.src = videoSrc;
   // }
-
+  
   return (
     <Box
       sx={{ py: { height: "fit-content", md: 0, xs: 0, bgcolor: "#1B1C21" } }}
@@ -467,14 +467,6 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
           )}
 
           <Box sx={{ width: "100%", height: "100%" }}>
-            {/* <Box sx={{ display : visible ? 'none' : 'flex' } }>
-              {allStream && matches && allStream
-                  ?.filter((el) => el?.match_id === matches[0]?.id)
-                  ?.map((rs) => (
-                    <Box>
-
-                    
-                    </Box> */}
             {/* <video
                 id="video"
                 type="application/x-mpegURL"
@@ -487,7 +479,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                 preload="auto"
                 controls
               ></video> */}
-               {/* <video
+            {/* <video
                 id="video"
                 class="video-js"
                 controls
@@ -498,12 +490,33 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
               >
                 <source src="https://10407a55ad3.vws.vegacdn.vn/live/_definst_/stream_9_3cc1894f/playlist.m3u8" type="application/x-mpegURL" />
               </video> */}
-            {visible && (
-              <Box>
-                abc
-              </Box>
+            {/* <ReactPlayer width='100%'
+            style={{ objectFit : 'cover' }}
+            className='viewport-header'
+            height='100%' playing  controls  url={
+          [
+            'https://10407a55ad3.vws.vegacdn.vn/live/_definst_/stream_9_3cc1894f/playlist.m3u8',
+          ]
+        
+        } config={{
+          file : {
+            hlsOptions 
+          }
+        }}/> */}
+            {visible && stream && (
+              <ReactHlsPlayer
+                src={stream[0]?.m3u8_url}
+                autoPlay={false}
+                controls={true}
+                width="100%"
+                height="auto"
+                hlsConfig={{
+                  maxLoadingDelay: 4,
+                  minAutoBitrate: 0,
+                  lowLatencyMode: true,
+                }}
+              />
             )}
-
             {!visible && ads && (
               <Player
                 width="100%"
@@ -529,7 +542,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                 <LoadingSpinner />
               </Player>
             )}
-
+            =
             <Box
               sx={{
                 position: "relative",
@@ -611,14 +624,6 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
             </Box>
           </Box>
 
-          {/* <ReactPlayer width='100%'
-            style={{ objectFit : 'cover' }}
-            className='viewport-header'
-            height='100%' playing playIcon={<PlayArrowIcon/>} controls  url={
-          [
-            'https://sovotv.live/uploads/resources/videos/introlivesovo.mp4',
-          ]
-        }/> */}
           {data?.map((el) => (
             <Link key={el?.id}>
               {el?.position === "RIBBON_VIDEO" ? (

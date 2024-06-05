@@ -6,7 +6,7 @@ import Divider from '@mui/material/Divider'
 import Typography from '@mui/material/Typography'
 import '../../index.css'
 import Chip from '@mui/material/Chip'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation, useParams } from 'react-router-dom'
 import path from '../../utils/path'
 import { Container } from '@mui/material'
 import { apiGetMatches } from '../../services/matchService'
@@ -66,8 +66,6 @@ function CustomGrid({ size, flexDirectionStyle, headerBox,start ,end, custom }) 
   if(response.success) setStream(response?.stream)
 }
 
-
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Box sx={{ p : 0.5, mb : 1, color : 'white', width : '100%', border : 1, borderColor : 'white',  background : 'linear-gradient(50deg, #ff6427, #770000)', borderRadius : '5px', fontSize : '13px', fontWeight : 600, display : headerBox ? { md : 'flex' , xs : 'none'} : 'none' , justifyContent : 'center' }}>
@@ -83,7 +81,7 @@ function CustomGrid({ size, flexDirectionStyle, headerBox,start ,end, custom }) 
                  {account && account?.filter(acc => acc?.id === el?.account_id)?.map(result => (
                   <Grid  item xs={2} sm={4} md={12} key={el?.id} sx={{ pb : 1 }}>
                   
-                    <Link  to={{ pathname : `/video/${el?.slug}`, search : `?idMatches=${el?.id}&idAccount=${result?.id}`}} style={{ textDecoration : 'none' }} >
+                    <Link key={el?.id}  replace to={{ pathname : `/video/${el?.id}/${result?.id}/${el?.slug}`, }} style={{ textDecoration : 'none' }} >
                   <Item key={el?.id}  sx={{ borderRadius: '10px', border : 1, borderColor : 'white', p : 0, flexDirection : 'column', height: 'fit-content', cursor : 'pointer', '&:hover' : {
                   transform : 'translateY(-3px)',
                   transitionDuration : '5s'
@@ -158,8 +156,11 @@ function CustomGrid({ size, flexDirectionStyle, headerBox,start ,end, custom }) 
                  <>
                  {account && account?.filter(acc => acc?.id === el?.account_id)?.map(result => (
                     <Grid item xs={2} sm={4} md={4} key={el?.id}>
-                    {stream && stream?.filter(str => str?.match_id === account?.id)?.map(rs => (
-                  <Link to={{ pathname : `/video/${el?.slug}`, search : `?idStream=${rs?.id}&idMatches=${el?.id}&idAccount=${result?.id}`}} style={{ textDecoration : 'none' }} >
+                    {/* {stream && stream?.filter(str => str?.match_id === account?.id)?.map(rs => ( */}
+                  <Link
+                  replace
+                 
+                   to={{ pathname : `/video/${el?.id}/${result?.id}/${el?.slug}`, }} style={{ textDecoration : 'none' }} >
                   <Item key={el?.id} sx={{  borderRadius: '10px', border : 1, borderColor : 'white', p : 0, flexDirection : 'column', height: 'fit-content', cursor : 'pointer', '&:hover' : {
                   transform : 'translateY(-3px)',
                   transitionDuration : '5s'
@@ -231,7 +232,7 @@ function CustomGrid({ size, flexDirectionStyle, headerBox,start ,end, custom }) 
                  </Box>
             </Item>
           </Link>
-                    ))}
+                    {/* ))} */}
                   </Grid>
                   ))}
                  </>
@@ -241,8 +242,14 @@ function CustomGrid({ size, flexDirectionStyle, headerBox,start ,end, custom }) 
                  <>
                  {account && account?.filter(acc => acc?.id === el?.account_id)?.map(result => (
                     <Grid item xs={2} sm={4} md={4} key={el?.id}>
-                  <Link 
-                  to={{ pathname : `/video/${el?.slug}`, search : `?idMatches=${el?.id}&idAccount=${result?.id}`}} style={{ textDecoration : 'none' }} >
+                  <Link  
+                   onClick={() => {
+                      setTimeout(() => {
+                        window.location.reload()
+                      }, 100)
+                    }}
+                 replace
+                  to={{ pathname : `/video/${el?.id}/${result?.id}/${el?.slug}`}} style={{ textDecoration : 'none' }} >
                   <Item key={el?.id} sx={{  borderRadius: '10px', border : 1, borderColor : 'white', p : 0, flexDirection : 'column', height: 'fit-content', cursor : 'pointer', '&:hover' : {
                   transform : 'translateY(-3px)',
                   transitionDuration : '5s'
