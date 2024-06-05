@@ -194,8 +194,8 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   //       return `${ads?.file_url}`;
   //   }
   // }
-  console.log(ads?.file_url);
-  var video = document.getElementById("video");
+  // console.log(ads?.file_url);
+  var video = document.getElementById("my-video");
   let videoSrc =
     "https://10407a55ad3.vws.vegacdn.vn/live/_definst_/stream_9_3cc1894f/playlist.m3u8";
 
@@ -475,9 +475,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
 
                     
                     </Box> */}
-
-            {visible && (
-              <video
+            {/* <video
                 id="video"
                 type="application/x-mpegURL"
                 crossOrigin="anonymous"
@@ -486,7 +484,21 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                 height="380"
                 muted
                 autoplay
-              ></video>
+                preload="auto"
+                controls
+              ></video> */}
+            {visible && (
+              <video
+                id="video"
+                class="video-js"
+                controls
+                preload="auto"
+                width="640"
+                height="264"
+                data-setup="{}"
+              >
+                <source src="https://10407a55ad3.vws.vegacdn.vn/live/_definst_/stream_9_3cc1894f/playlist.m3u8" type="application/x-mpegURL" />
+              </video>
             )}
 
             {!visible && ads && (
