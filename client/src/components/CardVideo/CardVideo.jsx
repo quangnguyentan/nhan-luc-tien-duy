@@ -3,6 +3,7 @@ import ReactHlsPlayer from "react-hls-player";
 import Box from "@mui/material/Box";
 import CustomGrid from "../CustomGrid/CustomGrid";
 import BannerBottomVideo from "../../assets/banner_video.gif";
+
 import BannerVideoFooter from "../../assets/bannerVideoFooter.gif";
 import {
   Player,
@@ -20,7 +21,12 @@ import { useEffect, useState } from "react";
 import backgroundHeaderTitle from "../../assets/backgroundTitle.webp";
 import { apiGetAccountById } from "../../services/accountService";
 import { apiGetMatchesById } from "../../services/matchService";
-import { Link, unstable_HistoryRouter, useLocation, useParams } from "react-router-dom";
+import {
+  Link,
+  unstable_HistoryRouter,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import { Chip, Container, Grid, Typography } from "@mui/material";
 import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
 import { apiGetADS } from "../../services/adsService";
@@ -55,7 +61,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   );
   const apiGetByIDStream = async (idStr) => {
     const response = await apiGetStreamById(idStr);
-    console.log(response)
+    console.log(response);
     if (response?.success) setStream(response?.streamId);
   };
 
@@ -83,7 +89,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   useEffect(() => {
     apiGetAllADS();
   }, []);
- const {idMatches, idAccount } = useParams()
+  const { idMatches, idAccount } = useParams();
   const location = useLocation();
   const [matches, setMatches] = useState("");
   const [account, setAccount] = useState("");
@@ -107,8 +113,9 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
     if (response.success) setMatches(response?.matchesId);
   };
   useEffect(() => {
-    if(location.pathname.slice(0, 2) !== "/"){
-      apiGetMatches(idMatches) && apiGetAccount(idAccount) & apiGetByIDStream(Number(idMatches));
+    if (location.pathname.slice(0, 2) !== "/") {
+      apiGetMatches(idMatches) &&
+        apiGetAccount(idAccount) & apiGetByIDStream(Number(idMatches));
     }
   }, []);
   const styles = {
@@ -145,7 +152,6 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   useEffect(() => {
     apiGetAllStream();
   }, []);
-
 
   useEffect(() => {
     const timeInterVal = setInterval(() => {
@@ -209,7 +215,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   // } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
   //   video.src = videoSrc;
   // }
-  
+
   return (
     <Box
       sx={{ py: { height: "fit-content", md: 0, xs: 0, bgcolor: "#1B1C21" } }}
@@ -504,18 +510,18 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
           }
         }}/> */}
             {visible && stream && (
-              <ReactHlsPlayer
-                src={stream[0]?.m3u8_url}
-                autoPlay={false}
-                controls={true}
-                width="100%"
-                height="auto"
-                hlsConfig={{
-                  maxLoadingDelay: 4,
-                  minAutoBitrate: 0,
-                  lowLatencyMode: true,
-                }}
-              />
+              <video
+                id="my-video"
+                class="video-js"
+                controls
+                preload="auto"
+                width="640"
+                height="264"
+                poster="MY_VIDEO_POSTER.jpg"
+                data-setup="{}"
+              >
+              <source src={stream[0]?.m3u8_url} type="application/x-mpegURL" />
+              </video>
             )}
             {!visible && ads && (
               <Player
