@@ -562,7 +562,11 @@ function CustomGrid({
                         ?.map((result) => (
                           <Grid item xs={2} sm={4} md={4} key={el?.id}>
                             <Link
-                             
+                              onClick={() => {
+                                setTimeout(() => {
+                                  window.location.reload();
+                                }, 100);
+                              }}
                               replace
                               to={{
                                 pathname: `/video/${el?.id}/${result?.id}/${el?.slug}`,
