@@ -124,7 +124,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
     },
   };
 
-  let interval = 6;
+  let interval = 5;
   let timeArrow = 31;
   const [time, setTime] = useState(null);
   const [hiddenButton, setHiddenButton] = useState(false);
@@ -195,20 +195,20 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   //   }
   // }
   // console.log(ads?.file_url);
-  var video = document.getElementById("my-video");
-  let videoSrc =
-    "https://10407a55ad3.vws.vegacdn.vn/live/_definst_/stream_9_3cc1894f/playlist.m3u8";
+  // var video = document.getElementById("video");
+  // let videoSrc =
+  //   "https://10407a55ad3.vws.vegacdn.vn/live/_definst_/stream_9_3cc1894f/playlist.m3u8";
 
-  if (Hls.isSupported()) {
-    var hls = new Hls();
-    hls.loadSource(videoSrc);
-    hls.attachMedia(video);
-    hls.on(Hls.Events.MANIFEST_PARSED, function () {
-      video.play();
-    });
-  } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-    video.src = videoSrc;
-  }
+  // if (Hls.isSupported()) {
+  //   var hls = new Hls();
+  //   hls.loadSource(videoSrc);
+  //   hls.attachMedia(video);
+  //   hls.on(Hls.Events.MANIFEST_PARSED, function () {
+  //     video.play();
+  //   });
+  // } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+  //   video.src = videoSrc;
+  // }
 
   return (
     <Box
@@ -487,8 +487,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                 preload="auto"
                 controls
               ></video> */}
-            {visible && (
-              <video
+               {/* <video
                 id="video"
                 class="video-js"
                 controls
@@ -498,7 +497,11 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                 data-setup="{}"
               >
                 <source src="https://10407a55ad3.vws.vegacdn.vn/live/_definst_/stream_9_3cc1894f/playlist.m3u8" type="application/x-mpegURL" />
-              </video>
+              </video> */}
+            {visible && (
+              <Box>
+                abc
+              </Box>
             )}
 
             {!visible && ads && (
