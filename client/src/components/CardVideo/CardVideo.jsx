@@ -21,7 +21,6 @@ import { useEffect, useRef, useState } from "react";
 import backgroundHeaderTitle from "../../assets/backgroundTitle.webp";
 import { apiGetAccountById } from "../../services/accountService";
 import { apiGetMatchesById } from "../../services/matchService";
-import 'video.js/dist/video-js.css';
 import {
   Link,
   unstable_HistoryRouter,
@@ -190,7 +189,9 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
     const adSkipButton = document.getElementById("ad-skip-button");
     const handleAdSkip = () => {
       video.play();
+      
     };
+    adSkipButton.addEventListener("click", handleAdSkip)
     return () => {
       adSkipButton.removeEventListener("click", handleAdSkip);
     };
@@ -198,9 +199,14 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const script = document.createElement("script");
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "https://vjs.zencdn.net/8.10.0/video.min.js";
     script.src = "https://vjs.zencdn.net/8.10.0/video.min.js";
     script.async = true;
     document.body.appendChild(script);
+    document.head.appendChild(link);
+
     const handleLocationChange = () => {
       setCurrentPath(window.location.pathname);
     };
@@ -212,6 +218,9 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
     return () => {
       window.removeEventListener("popstate", handleLocationChange);
       document.body.removeChild(script);
+      document.head.removeChild(link);
+      window.removeEventListener('DOMContentLoaded', handleClick)
+
     };
   }, [handleClick]);
   return (
@@ -508,19 +517,17 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
             hlsOptions 
           }
         }}/> */}
-            {visible && stream && (
+            { stream && (
               <video
                 id="my-video"
-                play
                 class="video-js"
-                autoPlay={true}
                 controls
                 poster={qc}
-                style={{ }}
                 videoWidth='100%'
                 videoHeight='100%'
                 crossOrigin
-                data-setup='{"controls": true, "autoplay": false, "preload": "auto"}'
+                autoPlay
+                data-setup='{"controls": true, "autoplay": true, "preload": "auto"}'
               >
                 <source
                   src={stream[0]?.m3u8_url}
