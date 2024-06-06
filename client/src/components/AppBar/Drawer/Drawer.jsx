@@ -85,8 +85,8 @@ export default function DrawRight() {
             size='large'
             sx={{ ...(open && { display: 'none'}), border : 'none'  }}
           >
-           <Box sx={{ bgcolor : 'white',position : 'relative' }}>
-            <MenuIcon sx={{  position : 'absolute', top : '-10px', right : '-70px'}}/>
+           <Box sx={{ bgcolor : 'white' ,position : 'relative' }}>
+            <MenuIcon sx={{  color: 'white', position : 'absolute', top : '-10px', right : '-70px'}}/>
            </Box>
           </IconButton>
         </Toolbar>

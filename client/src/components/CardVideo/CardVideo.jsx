@@ -147,7 +147,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   const [timeNext, setTimeNext] = useState(null);
   const changeTime = () => {
     interval--;
-    if (interval < 0) return;
+    if (interval < 0) return ;
     return interval;
   };
   // const changeArrowTime = () => {
@@ -165,7 +165,6 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   useEffect(() => {
     apiGetAllStream();
   }, []);
-
   useEffect(() => {
     const timeInterVal = setInterval(() => {
       const newTime = changeTime();
@@ -175,6 +174,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
       clearInterval(timeInterVal);
     };
   }, []);
+
   //   useEffect(() => {
   //     const timeNextArrow = setInterval(() => {
   //        const newTimeArrow = changeArrowTime()
@@ -184,9 +184,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   //        clearInterval(timeNextArrow)
   //      })
   //  }, [])
-  window.onload = function () {
-    document.getElementById("my-video").play();
-  }
+ console.log(time)
   const handleClick = () => {
     const video = document.getElementById("my-video");
     const adSkipButton = document.getElementById("ad-skip-button");
@@ -208,7 +206,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
     const script = document.createElement("script");
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "https://vjs.zencdn.net/8.10.0/video.min.js";
+    link.href = "https://vjs.zencdn.net/8.10.0/video-js.css";
     script.src = "https://vjs.zencdn.net/8.10.0/video.min.js";
     script.async = true;
     document.body.appendChild(script);
@@ -412,6 +410,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
           </Box>
         </Container>
       )}
+      <Box sx={{ height : '20px' }}/>
       <Box sx={{ display: { md: "flex" }, gap: 2 }}>
         <Box
           sx={{
@@ -435,7 +434,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
         color : 'white', fontSize : '10px', textTransform : 'capitalize', cursor : 'default',
         right : { md : '68%'}, width : 'fit-cotent', margin : '10px',  height: '30px', backgroundColor : 'black' }}>Video sẽ tự động bỏ qua sau {timeNext}</Button>} */}
               {ads && stream ? (
-                time === 0 || time === undefined ? (
+                time === 0 || time === undefined || time === null || time === NaN ? (
                   <Button
                     id="ad-skip-button"
                     endIcon={<SkipNextIcon />}
@@ -445,6 +444,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                     }}
                     variant="contained"
                     style={{
+                      
                       position: "absolute",
                       zIndex: 1,
                       color: "white",
@@ -526,24 +526,22 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
         }}/> */}
             {visible && stream && (
               <video
-                id="my-video"
-                class="video-js"
-                controls="controls"
-                preload="auto"
-                autoPlay="autoPlay"
-                playsInline
-                
-                poster={qc}
-                videoWidth='100%'
-                videoHeight='100%'
-                data-setup='{}'
-              >
-                <source
-                  src={stream[0]?.m3u8_url}
-                  type="application/x-mpegURL"
+                  id="my-video"
+                  class="video-js"
+                  controls="controls"
+                  preload="auto"
+                  autoPlay="autoPlay"
+                  playsInline
                   
-                />
-              </video>
+                  poster={qc}
+                  data-setup='{}'
+                >
+                  <source
+                    src={stream[0]?.m3u8_url}
+                    type="application/x-mpegURL"
+                    
+                  />
+                </video>
             )}
             {!visible && ads && (
               <Player

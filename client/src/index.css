@@ -37,11 +37,22 @@ body {
   width: 100%;
   height: 470px;
 }
+video{
+  width: 100%;
+  height: 100%;
+}
 .vjs-control-bar{
   top: 0;
   transition: none;
 }
+.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar{
+  transition: none !important;
+  opacity: 1 !important;
+}
 
+.vjs-big-play-button{
+  display: block;
+}
 /* .css-uwwqev .video-react-fullscreen {
   background-image: url('https://tructiep2.dauphong2.live/wp-content/uploads/2024/05/CPD_Logo_290x108.gif');
   background-repeat: no-repeat;
