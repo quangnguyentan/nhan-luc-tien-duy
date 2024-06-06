@@ -6,7 +6,14 @@ import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import "../../index.css";
 import Chip from "@mui/material/Chip";
-import { Link, NavLink, useLocation, useParams } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  useLocation,
+  useNavigate,
+  useNavigation,
+  useParams,
+} from "react-router-dom";
 import path from "../../utils/path";
 import { Container } from "@mui/material";
 import { apiGetMatches } from "../../services/matchService";
@@ -71,22 +78,23 @@ function CustomGrid({
     }
   };
 
+  const navigate = useNavigate();
   const apiGetStreamSetting = async () => {
     const response = await apiGetStream();
     if (response.success) setStream(response?.stream);
   };
   const checkOnlStream = () => {
-  let rs = [];
+    let rs = [];
     if (stream && matches) {
       matches?.filter((el) => {
         rs.push(el?.id);
       });
       return stream?.filter((el) => rs.includes(el?.match_id));
-
     }
   };
-  const ls = []
-  checkOnlStream()?.filter(rs => (ls.push(rs?.match_id)))
+
+  const ls = [];
+  checkOnlStream()?.filter((rs) => ls.push(rs?.match_id));
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Box
@@ -138,7 +146,6 @@ function CustomGrid({
                           >
                             <Link
                               key={el?.id}
-                              replace
                               to={{
                                 pathname: `/video/${el?.id}/${result?.id}/${el?.slug}`,
                               }}
@@ -281,10 +288,20 @@ function CustomGrid({
                                     <Typography
                                       sx={{ fontSize: "15px", fontWeight: 600 }}
                                     >
-                                      {ls?.includes(el?.id) ? <Box sx={{ display : 'flex', alignItems : 'center', gap: 1}}>
-                                          <Box className="truc_tiep" ></Box>
+                                      {ls?.includes(el?.id) ? (
+                                        <Box
+                                          sx={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            gap: 1,
+                                          }}
+                                        >
+                                          <Box className="truc_tiep"></Box>
                                           <span>Đang diễn ra</span>
-                                        </Box> : "Chưa diễn ra"}
+                                        </Box>
+                                      ) : (
+                                        "Chưa diễn ra"
+                                      )}
                                     </Typography>
                                     <Link
                                       target="_blank"
@@ -319,9 +336,8 @@ function CustomGrid({
         </Box>
       ) : (
         <Box sx={{ flexGrow: 1 }}>
-          {location.pathname.slice(0, 2) !== '/' ? (
+          {location.pathname.slice(0, 2) !== "/" ? (
             <Grid
-              sx={{}}
               container
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 2, sm: 8, md: 12 }}
@@ -335,16 +351,12 @@ function CustomGrid({
                         ?.map((result) => (
                           <Grid item xs={2} sm={4} md={4} key={el?.id}>
                             {/* {stream && stream?.filter(str => str?.match_id === account?.id)?.map(rs => ( */}
-                            <NavLink
-                             onClick={() => {
-                                setTimeout(() => {
-                                  window.location.reload();
-                                }, 100);
+                            <Link
+                              onClick={() => {
+                                window.location.href = `/video/${el?.id}/${result?.id}/${el?.slug}`;
+                              
                               }}
-                              replace
-                              to={{
-                                pathname: `/video/${el?.id}/${result?.id}/${el?.slug}`,
-                              }}
+                              to={`/video/${el?.id}/${result?.id}/${el?.slug}`}
                               style={{ textDecoration: "none" }}
                             >
                               <Item
@@ -519,10 +531,20 @@ function CustomGrid({
                                     <Typography
                                       sx={{ fontSize: "15px", fontWeight: 600 }}
                                     >
-                                        {ls?.includes(el?.id) ? <Box sx={{ display : 'flex', alignItems : 'center', gap: 1}}>
-                                          <Box className="truc_tiep" ></Box>
+                                      {ls?.includes(el?.id) ? (
+                                        <Box
+                                          sx={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            gap: 1,
+                                          }}
+                                        >
+                                          <Box className="truc_tiep"></Box>
                                           <span>Đang diễn ra</span>
-                                        </Box> : "Chưa diễn ra"}
+                                        </Box>
+                                      ) : (
+                                        "Chưa diễn ra"
+                                      )}
                                     </Typography>
                                     <Link
                                       target="_blank"
@@ -546,7 +568,7 @@ function CustomGrid({
                                   </Box>
                                 </Box>
                               </Item>
-                            </NavLink>
+                            </Link>
                             {/* ))} */}
                           </Grid>
                         ))}
@@ -568,8 +590,6 @@ function CustomGrid({
                         ?.map((result) => (
                           <Grid item xs={2} sm={4} md={4} key={el?.id}>
                             <Link
-                             
-                              replace
                               to={{
                                 pathname: `/video/${el?.id}/${result?.id}/${el?.slug}`,
                               }}
@@ -747,10 +767,20 @@ function CustomGrid({
                                     <Typography
                                       sx={{ fontSize: "15px", fontWeight: 600 }}
                                     >
-                                      {ls?.includes(el?.id) ? <Box sx={{ display : 'flex', alignItems : 'center', gap: 1}}>
-                                          <Box className="truc_tiep" ></Box>
+                                      {ls?.includes(el?.id) ? (
+                                        <Box
+                                          sx={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            gap: 1,
+                                          }}
+                                        >
+                                          <Box className="truc_tiep"></Box>
                                           <span>Đang diễn ra</span>
-                                      </Box> : "Chưa diễn ra"}
+                                        </Box>
+                                      ) : (
+                                        "Chưa diễn ra"
+                                      )}
                                     </Typography>
                                     <Link
                                       target="_blank"

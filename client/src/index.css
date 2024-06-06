@@ -54,7 +54,17 @@ body {
 .vjs-modal-dialog-content{
   display: none;
 }
+/* .video-react.video-react-fullscreen {
+  position: relative;
+  overflow: hidden;
+  z-index: -1;
+  transform: translate(-50%, -50%) !important;
+  
+}
 
+.banner_bottom{
+
+} */
 .truc_tiep {
   background:  linear-gradient(96deg, #008360 -2.23%, #49EC44 117.28%);
   animation: alternate 1s cubic-bezier(0,0,.2,1) infinite;

@@ -145,7 +145,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   const [timeNext, setTimeNext] = useState(null);
   const changeTime = () => {
     interval--;
-    if (interval < 0) return ;
+    if (interval < 0) return;
     return interval;
   };
   // const changeArrowTime = () => {
@@ -166,7 +166,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   useEffect(() => {
     const timeInterVal = setInterval(() => {
       const newTime = changeTime();
-      if(newTime === undefined) return 
+      if (newTime === undefined) return;
       setTime(newTime);
     }, 1000);
     return () => {
@@ -186,18 +186,18 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   const handleClick = () => {
     const video = document.getElementById("my-video");
     const adSkipButton = document.getElementById("ad-skip-button");
-    const userGestureEvents = ['touchend', 'click', 'dblclick', 'keydown'];
+    const userGestureEvents = ["touchend", "click", "dblclick", "keydown"];
     const handleAdSkip = () => {
-        video.play();
+      video.play();
     };
-    userGestureEvents.forEach(event => {
+    userGestureEvents.forEach((event) => {
       adSkipButton.addEventListener(event, handleAdSkip);
     });
     return () => {
-       userGestureEvents.forEach(event => {
-      adSkipButton.removeEventListener(event, handleAdSkip);
-    });
-  }
+      userGestureEvents.forEach((event) => {
+        adSkipButton.removeEventListener(event, handleAdSkip);
+      });
+    };
   };
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -212,12 +212,12 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
     document.head.appendChild(link);
 
     const handleLocationChange = () => {
-      setCurrentPath(window.location.pathname);
+      window.location.reload()
     };
 
     window.addEventListener("popstate", handleLocationChange);
-    window.addEventListener('DOMContentLoaded', handleClick)
-    
+    window.addEventListener("DOMContentLoaded", handleClick);
+    window.addEventListener("DOMContentLoaded", handleLocationChange);
 
 
     // Cleanup function
@@ -225,9 +225,8 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
       window.removeEventListener("popstate", handleLocationChange);
       document.body.removeChild(script);
       document.head.removeChild(link);
-      window.removeEventListener('DOMContentLoaded', handleClick)
-      
-
+      window.removeEventListener("DOMContentLoaded", handleClick);
+      window.removeEventListener("DOMContentLoaded", handleLocationChange);
 
     };
   }, [handleClick]);
@@ -293,7 +292,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                 display: { md: "flex", xs: "flex" },
                 gap: 4,
                 justifyContent: "space-between",
-                px: {xs : 1, md : 8},
+                px: { xs: 1, md: 8 },
                 alignItems: "center",
                 color: "white",
               }}
@@ -326,10 +325,18 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
               >
                 <Link style={{ textDecoration: "none" }}>
                   <Chip
-                    label={stream && stream[0]?.m3u8_url ? <Box sx={{ display : 'flex', alignItems : 'center', gap: 1}}>
-                                          <Box className="truc_tiep" ></Box>
-                                          <span>Đang diễn ra</span>
-                                        </Box> : "Chưa diễn ra"}
+                    label={
+                      stream && stream[0]?.m3u8_url ? (
+                        <Box
+                          sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                        >
+                          <Box className="truc_tiep"></Box>
+                          <span>Đang diễn ra</span>
+                        </Box>
+                      ) : (
+                        "Chưa diễn ra"
+                      )
+                    }
                     className="button_info"
                     sx={{
                       color: "white",
@@ -416,7 +423,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
           </Box>
         </Container>
       )}
-      <Box sx={{ height : '20px' }}/>
+      <Box sx={{ height: "20px" }} />
       <Box sx={{ display: { md: "flex" }, gap: 2 }}>
         <Box
           sx={{
@@ -440,7 +447,10 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
         color : 'white', fontSize : '10px', textTransform : 'capitalize', cursor : 'default',
         right : { md : '68%'}, width : 'fit-cotent', margin : '10px',  height: '30px', backgroundColor : 'black' }}>Video sẽ tự động bỏ qua sau {timeNext}</Button>} */}
               {ads && stream ? (
-                time === 0 || time === undefined || time === null || time === NaN ? (
+                time === 0 ||
+                time === undefined ||
+                time === null ||
+                time === NaN ? (
                   <Button
                     id="ad-skip-button"
                     endIcon={<SkipNextIcon />}
@@ -450,7 +460,6 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                     }}
                     variant="contained"
                     style={{
-                      
                       position: "absolute",
                       zIndex: 1,
                       color: "white",
@@ -531,6 +540,61 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
           }
         }}/> */}
             {visible && stream && (
+              <Box sx={{ height: { md: "470px", xs: "230px" } }}>
+                <video
+                  id="my-video"
+                  class="video-js"
+                  controls="controls"
+                  preload="auto"
+                  autoPlay="autoPlay"
+                  playsInline
+                  poster={!stream[0]?.m3u8_url ? qc : ""}
+                  videoWidth="inherit"
+                  videoHeight="inherit"
+                  data-setup="{}"
+                >
+                  <source
+                    src={stream[0]?.m3u8_url}
+                    type="application/x-mpegURL"
+                  />
+                </video>
+                {/* <Box className="banner_bottom" sx={{ 
+                 zIndex: 1,
+                  objectFit: "contain",
+                  position: "absolute",
+                  right: { xs: "0", md: "0" },
+                  display: " flex",
+                  color: "white",
+                  fontSize: "10px",
+                  textTransform: "capitalize",
+                  cursor: "pointer",
+                  top: { md: -45, xs: -40 },
+                  width: "100%",
+                  height : '40px'
+              }}>
+              {data && data?.map((el) => (
+                  <Link key={el?.id}>
+                    {el?.position === "RIBBON_VIDEO" ? (
+                      <img
+                        className="react-player1"
+                        src={el?.file_url}
+                        style={{
+                          zIndex : 1000000000000000000,
+                          width: "100%",
+                          objectFit: "contain",
+                          height: "fit-content",
+                        }}
+                        alt=""
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </Link>
+                ))}
+              </Box> */}
+              </Box>
+            )}
+            {/* {location.pathname.slice(0, 2) === "/" && stream && (
               <Box sx={{ height : { md : '470px' , xs : '230px'} }}>
               <video
                   id="my-video"
@@ -551,7 +615,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                   />
                 </video>
               </Box>
-            )}
+            )} */}
             {!visible && ads && (
               <Player
                 width="100%"
@@ -566,7 +630,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                 autoPlay="autoPlay"
                 className="customIcon"
               >
-                <ControlBar autoHide={true} >
+                <ControlBar autoHide={true}>
                   <ControlBar>
                     <PlayToggle />
                     <VolumeMenuButton />
@@ -579,7 +643,6 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                 <LoadingSpinner />
               </Player>
             )}
-            =
             <Box
               sx={{
                 position: "relative",
@@ -598,7 +661,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
               >
                 <img
                   // src="https://sovotv.live/uploads/resources/images/cf79ad4adc30f0e7cffc0956e68047cc.jpg"
-                  style={{width : '300px'}}
+                  style={{ width: "300px" }}
                   alt=""
                 />
               </Box>
@@ -607,14 +670,14 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                   zIndex: 1,
                   objectFit: "contain",
                   position: "absolute",
-                  right: { xs: "25%", md: "15%" },
+                  right: { xs: "30%", md: "15%" },
                   display: " flex",
                   gap: { md: 2, xs: 1 },
                   color: "white",
                   fontSize: "10px",
                   textTransform: "capitalize",
                   cursor: "pointer",
-                  top: { md: -50, xs: -40 },
+                  top: { md: -70, xs: -60 },
                   width: "90px",
                 }}
               >
@@ -657,28 +720,44 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                     }}
                   />
                 </Link>
+               
+              </Box>
+              <Box sx={{ 
+                  zIndex: 1,
+                  objectFit: "contain",
+                  position: "absolute",
+                  right: { xs: "0", md: "0" },
+                  display: " flex",
+                  color: "white",
+                  fontSize: "10px",
+                  textTransform: "capitalize",
+                  cursor: "pointer",
+                  top: { md: -45, xs: -40 },
+                  width: "100%",
+                  height : '40px'
+              }}>
+              {data && data?.map((el) => (
+                  <Link key={el?.id}>
+                    {el?.position === "RIBBON_VIDEO" ? (
+                      <img
+                        className="react-player1"
+                        src={el?.file_url}
+                        style={{
+                          zIndex : 1000000000000000000,
+                          width: "100%",
+                          objectFit: "contain",
+                          height: "fit-content",
+                        }}
+                        alt=""
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </Link>
+                ))}
               </Box>
             </Box>
           </Box>
-
-          {data?.map((el) => (
-            <Link key={el?.id}>
-              {el?.position === "RIBBON_VIDEO" ? (
-                <img
-                  className="react-player1"
-                  src={el?.file_url}
-                  style={{
-                    width: "100%",
-                    objectFit: "contain",
-                    height: "fit-content",
-                  }}
-                  alt=""
-                />
-              ) : (
-                ""
-              )}
-            </Link>
-          ))}
 
           {!blv && ads && (
             <>
@@ -810,7 +889,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
        : ''}
            </Link>
            ))} */}
-      <Box
+      {/* <Box
         sx={{
           width: "100%",
           py: { md: 1, xs: 0 },
@@ -832,7 +911,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
             alt=""
           />
         </Box>
-      </Box>
+      </Box> */}
       <Box sx={{ height: "fit-content" }}>
         {location.pathname.slice(0, 2) !== "/" ? (
           <CustomGrid start={0} end={6} />
