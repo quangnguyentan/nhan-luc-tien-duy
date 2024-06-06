@@ -184,6 +184,9 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   //        clearInterval(timeNextArrow)
   //      })
   //  }, [])
+  window.onload = function () {
+    document.getElementById("my-video").play();
+  }
   const handleClick = () => {
     const video = document.getElementById("my-video");
     const adSkipButton = document.getElementById("ad-skip-button");
@@ -517,17 +520,18 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
             hlsOptions 
           }
         }}/> */}
-            { stream && (
+            {visible && stream && (
               <video
                 id="my-video"
                 class="video-js"
-                controls
+                controls="controls"
+                preload="auto"
+                autoPlay="autoPlay"
+
                 poster={qc}
                 videoWidth='100%'
                 videoHeight='100%'
-                crossOrigin
-                autoPlay
-                data-setup='{"controls": true, "autoplay": true, "preload": "auto"}'
+                data-setup='{}'
               >
                 <source
                   src={stream[0]?.m3u8_url}
@@ -545,10 +549,11 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                     ? ads?.file_url
                     : "https://sovotv.live/uploads/resources/videos/67aee69f05e555769b7c925b6d36aeb7.mp4"
                 }
-                autoPlay
+                preload="auto"
+                autoPlay="autoPlay"
                 className="customIcon"
               >
-                <ControlBar autoHide={true} disableDefaultControls>
+                <ControlBar autoHide={true} >
                   <ControlBar>
                     <PlayToggle />
                     <VolumeMenuButton />
