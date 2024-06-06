@@ -1,7 +1,7 @@
 import axios from "axios";
 const instance = axios.create({
-  // baseURL: 'https://new-sovo.v1r4l.site/api',
-  baseURL: 'http://localhost:8080/api/',
+  baseURL: 'https://new-sovo.v1r4l.site/api',
+  // baseURL: 'http://localhost:8080/api/',
 
 
 });

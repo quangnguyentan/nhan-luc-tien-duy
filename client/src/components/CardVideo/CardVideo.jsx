@@ -190,14 +190,18 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   const handleClick = () => {
     const video = document.getElementById("my-video");
     const adSkipButton = document.getElementById("ad-skip-button");
+    const userGestureEvents = ['touchend', 'click', 'dblclick', 'keydown'];
     const handleAdSkip = () => {
       video.play();
-      
     };
-    adSkipButton.addEventListener("click", handleAdSkip)
+    userGestureEvents.forEach(event => {
+      adSkipButton.addEventListener(event, handleAdSkip);
+    });
     return () => {
-      adSkipButton.removeEventListener("click", handleAdSkip);
-    };
+       userGestureEvents.forEach(event => {
+      adSkipButton.removeEventListener(event, handleAdSkip);
+    });
+  }
   };
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -527,7 +531,8 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                 controls="controls"
                 preload="auto"
                 autoPlay="autoPlay"
-
+                playsInline
+                
                 poster={qc}
                 videoWidth='100%'
                 videoHeight='100%'
@@ -543,6 +548,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
             {!visible && ads && (
               <Player
                 width="100%"
+                playsInline
                 height="100%"
                 src={
                   ads?.file_url

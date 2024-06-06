@@ -39,6 +39,7 @@ body {
 }
 .vjs-control-bar{
   top: 0;
+  transition: none;
 }
 
 /* .css-uwwqev .video-react-fullscreen {
