@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import CustomGrid from "../CustomGrid/CustomGrid";
 import BannerBottomVideo from "../../assets/banner_video.gif";
 import { Helmet } from "react-helmet";
-import BannerVideoFooter from "../../assets/bannerVideoFooter.gif";
+import qc from "../../assets/qc.jpg";
 import {
   Player,
   BigPlayButton,
@@ -17,10 +17,11 @@ import {
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import Button from "@mui/material/Button";
 import "../../index.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import backgroundHeaderTitle from "../../assets/backgroundTitle.webp";
 import { apiGetAccountById } from "../../services/accountService";
 import { apiGetMatchesById } from "../../services/matchService";
+import 'video.js/dist/video-js.css';
 import {
   Link,
   unstable_HistoryRouter,
@@ -205,7 +206,8 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
     };
 
     window.addEventListener("popstate", handleLocationChange);
-    handleClick();
+    window.addEventListener('DOMContentLoaded', handleClick)
+
     // Cleanup function
     return () => {
       window.removeEventListener("popstate", handleLocationChange);
@@ -509,17 +511,21 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
             {visible && stream && (
               <video
                 id="my-video"
+                play
                 class="video-js"
-                width="100%"
-                height="100%"
-                autoPlay
+                autoPlay={true}
                 controls
-                poster="MY_VIDEO_POSTER.jpg"
-                data-setup="{}"
+                poster={qc}
+                style={{ }}
+                videoWidth='100%'
+                videoHeight='100%'
+                crossOrigin
+                data-setup='{"controls": true, "autoplay": false, "preload": "auto"}'
               >
                 <source
                   src={stream[0]?.m3u8_url}
                   type="application/x-mpegURL"
+                  
                 />
               </video>
             )}

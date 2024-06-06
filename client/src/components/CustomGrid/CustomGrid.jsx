@@ -87,7 +87,6 @@ function CustomGrid({
   };
   const ls = []
   checkOnlStream()?.filter(rs => (ls.push(rs?.match_id)))
-  console.log(ls);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Box
@@ -317,7 +316,7 @@ function CustomGrid({
         </Box>
       ) : (
         <Box sx={{ flexGrow: 1 }}>
-          {start && end ? (
+          {location.pathname.slice(0, 2) !== '/' ? (
             <Grid
               sx={{}}
               container
@@ -334,6 +333,11 @@ function CustomGrid({
                           <Grid item xs={2} sm={4} md={4} key={el?.id}>
                             {/* {stream && stream?.filter(str => str?.match_id === account?.id)?.map(rs => ( */}
                             <Link
+                             onClick={() => {
+                                setTimeout(() => {
+                                  window.location.reload();
+                                }, 100);
+                              }}
                               replace
                               to={{
                                 pathname: `/video/${el?.id}/${result?.id}/${el?.slug}`,
@@ -512,11 +516,7 @@ function CustomGrid({
                                     <Typography
                                       sx={{ fontSize: "15px", fontWeight: 600 }}
                                     >
-                                      {convertDate() ===
-                                      el?.start_time?.slice(0, -3) -
-                                        convertDate(el?.start_date)
-                                        ? "Đang diễn ra "
-                                        : "Chưa diễn ra"}
+                                        {ls?.includes(el?.id) ? "Đang diễn ra" : "Chưa diễn ra"}
                                     </Typography>
                                     <Link
                                       target="_blank"
@@ -562,11 +562,7 @@ function CustomGrid({
                         ?.map((result) => (
                           <Grid item xs={2} sm={4} md={4} key={el?.id}>
                             <Link
-                              onClick={() => {
-                                setTimeout(() => {
-                                  window.location.reload();
-                                }, 100);
-                              }}
+                             
                               replace
                               to={{
                                 pathname: `/video/${el?.id}/${result?.id}/${el?.slug}`,
