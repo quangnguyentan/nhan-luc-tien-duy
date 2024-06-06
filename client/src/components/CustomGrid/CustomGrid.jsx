@@ -281,7 +281,10 @@ function CustomGrid({
                                     <Typography
                                       sx={{ fontSize: "15px", fontWeight: 600 }}
                                     >
-                                      Chưa diễn ra
+                                      {ls?.includes(el?.id) ? <Box sx={{ display : 'flex', alignItems : 'center', gap: 1}}>
+                                          <Box className="truc_tiep" ></Box>
+                                          <span>Đang diễn ra</span>
+                                        </Box> : "Chưa diễn ra"}
                                     </Typography>
                                     <Link
                                       target="_blank"
@@ -332,7 +335,7 @@ function CustomGrid({
                         ?.map((result) => (
                           <Grid item xs={2} sm={4} md={4} key={el?.id}>
                             {/* {stream && stream?.filter(str => str?.match_id === account?.id)?.map(rs => ( */}
-                            <Link
+                            <NavLink
                              onClick={() => {
                                 setTimeout(() => {
                                   window.location.reload();
@@ -516,7 +519,10 @@ function CustomGrid({
                                     <Typography
                                       sx={{ fontSize: "15px", fontWeight: 600 }}
                                     >
-                                        {ls?.includes(el?.id) ? "Đang diễn ra" : "Chưa diễn ra"}
+                                        {ls?.includes(el?.id) ? <Box sx={{ display : 'flex', alignItems : 'center', gap: 1}}>
+                                          <Box className="truc_tiep" ></Box>
+                                          <span>Đang diễn ra</span>
+                                        </Box> : "Chưa diễn ra"}
                                     </Typography>
                                     <Link
                                       target="_blank"
@@ -540,7 +546,7 @@ function CustomGrid({
                                   </Box>
                                 </Box>
                               </Item>
-                            </Link>
+                            </NavLink>
                             {/* ))} */}
                           </Grid>
                         ))}
@@ -741,7 +747,10 @@ function CustomGrid({
                                     <Typography
                                       sx={{ fontSize: "15px", fontWeight: 600 }}
                                     >
-                                      {ls?.includes(el?.id) ? "Đang diễn ra" : "Chưa diễn ra"}
+                                      {ls?.includes(el?.id) ? <Box sx={{ display : 'flex', alignItems : 'center', gap: 1}}>
+                                          <Box className="truc_tiep" ></Box>
+                                          <span>Đang diễn ra</span>
+                                      </Box> : "Chưa diễn ra"}
                                     </Typography>
                                     <Link
                                       target="_blank"

@@ -13,6 +13,7 @@ body {
   justify-content: space-between;
  
 }
+
 .video-react-control-bar{
   top : 0;
   background: #1B1C21;  
@@ -35,12 +36,9 @@ body {
 }
 #my-video{
   width: 100%;
-  height: 470px;
+  height: inherit;
 }
-video{
-  width: 100%;
-  height: 100%;
-}
+
 .vjs-control-bar{
   top: 0;
   transition: none;
@@ -52,6 +50,21 @@ video{
 
 .vjs-big-play-button{
   display: block;
+}
+.vjs-modal-dialog-content{
+  display: none;
+}
+
+.truc_tiep {
+  background:  linear-gradient(96deg, #008360 -2.23%, #49EC44 117.28%);
+  animation: alternate 1s cubic-bezier(0,0,.2,1) infinite;
+  --tw-bg-opacity: 1;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 1s ease infinite;
+  -moz-animation: Gradient 1s ease infinite;
 }
 /* .css-uwwqev .video-react-fullscreen {
   background-image: url('https://tructiep2.dauphong2.live/wp-content/uploads/2024/05/CPD_Logo_290x108.gif');

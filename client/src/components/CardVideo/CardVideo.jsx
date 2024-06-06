@@ -74,10 +74,8 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
 
   const apiGetByIDStream = async (idStr) => {
     const response = await apiGetStreamById(idStr);
-    console.log(response);
     if (response?.success) setStream(response?.streamId);
   };
-
   const apiGetAllADS = async () => {
     const response = await apiGetADS();
     if (response?.success) {
@@ -168,6 +166,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   useEffect(() => {
     const timeInterVal = setInterval(() => {
       const newTime = changeTime();
+      if(newTime === undefined) return 
       setTime(newTime);
     }, 1000);
     return () => {
@@ -184,13 +183,12 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   //        clearInterval(timeNextArrow)
   //      })
   //  }, [])
- console.log(time)
   const handleClick = () => {
     const video = document.getElementById("my-video");
     const adSkipButton = document.getElementById("ad-skip-button");
     const userGestureEvents = ['touchend', 'click', 'dblclick', 'keydown'];
     const handleAdSkip = () => {
-      video.play();
+        video.play();
     };
     userGestureEvents.forEach(event => {
       adSkipButton.addEventListener(event, handleAdSkip);
@@ -205,6 +203,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   useEffect(() => {
     const script = document.createElement("script");
     const link = document.createElement("link");
+
     link.rel = "stylesheet";
     link.href = "https://vjs.zencdn.net/8.10.0/video-js.css";
     script.src = "https://vjs.zencdn.net/8.10.0/video.min.js";
@@ -218,6 +217,8 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
 
     window.addEventListener("popstate", handleLocationChange);
     window.addEventListener('DOMContentLoaded', handleClick)
+    
+
 
     // Cleanup function
     return () => {
@@ -225,6 +226,8 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
       document.body.removeChild(script);
       document.head.removeChild(link);
       window.removeEventListener('DOMContentLoaded', handleClick)
+      
+
 
     };
   }, [handleClick]);
@@ -290,7 +293,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                 display: { md: "flex", xs: "flex" },
                 gap: 4,
                 justifyContent: "space-between",
-                px: 8,
+                px: {xs : 1, md : 8},
                 alignItems: "center",
                 color: "white",
               }}
@@ -323,13 +326,16 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
               >
                 <Link style={{ textDecoration: "none" }}>
                   <Chip
-                    label="Chưa diễn ra"
+                    label={stream && stream[0]?.m3u8_url ? <Box sx={{ display : 'flex', alignItems : 'center', gap: 1}}>
+                                          <Box className="truc_tiep" ></Box>
+                                          <span>Đang diễn ra</span>
+                                        </Box> : "Chưa diễn ra"}
                     className="button_info"
                     sx={{
                       color: "white",
                       borderRadius: "10px",
                       fontWeight: 600,
-                      width: "90px",
+                      width: "fit-content",
                       height: "30px",
                       fontSize: "10px",
                     }}
@@ -525,6 +531,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
           }
         }}/> */}
             {visible && stream && (
+              <Box sx={{ height : { md : '470px' , xs : '230px'} }}>
               <video
                   id="my-video"
                   class="video-js"
@@ -532,16 +539,18 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                   preload="auto"
                   autoPlay="autoPlay"
                   playsInline
-                  
-                  poster={qc}
+                  poster= {!stream[0]?.m3u8_url ? qc : ""}
+                  videoWidth='inherit'
+                  videoHeight='inherit'
                   data-setup='{}'
                 >
-                  <source
+                <source
                     src={stream[0]?.m3u8_url}
                     type="application/x-mpegURL"
-                    
+                  
                   />
                 </video>
+              </Box>
             )}
             {!visible && ads && (
               <Player
@@ -588,8 +597,8 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                 }}
               >
                 <img
-                  src="https://tructiep2.dauphong2.live/wp-content/uploads/2024/05/CPD_Logo_290x108.gif"
-                  style={{}}
+                  // src="https://sovotv.live/uploads/resources/images/cf79ad4adc30f0e7cffc0956e68047cc.jpg"
+                  style={{width : '300px'}}
                   alt=""
                 />
               </Box>
@@ -605,7 +614,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                   fontSize: "10px",
                   textTransform: "capitalize",
                   cursor: "pointer",
-                  top: { md: -30, xs: -20 },
+                  top: { md: -50, xs: -40 },
                   width: "90px",
                 }}
               >
