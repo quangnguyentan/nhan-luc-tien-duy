@@ -34,7 +34,9 @@ body {
   background-color: none;
 }
 .video-js .vjs-tech{
-  height: 120% !important;
+  position: absolute;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 #my-video.video-js.vjs-fullscreen{
