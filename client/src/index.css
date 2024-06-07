@@ -31,13 +31,40 @@ body {
   justify-content: end;
  
 }
+
 .video-js{
   background-color: none;
+  width: 0;
+}
+#my-video.video-js.vjs-fullscreen{
+  position: absolute !important;
+  overflow-x: hidden;
+}
+video#my-video.banner_bottom_fullscreen {
+  font-size: 3em;
+    line-height: 1.5em;
+    height: 1.63332em;
+    width: 3em;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 0;
+    margin-top: -0.81666em;
+    margin-left: -1.5em;
+    cursor: pointer;
+    opacity: 1;
+    border: 0.06666em solid #fff;
+    background-color: #2B333F;
+    background-color: rgba(43, 51, 63, 0.7);
+    border-radius: 0.3em;
+    transition: all 0.4s;;
 }
 #my-video{
   width: 100%;
   height: inherit;
 }
+
 
 .vjs-control-bar{
   top: 0;
@@ -65,6 +92,7 @@ body {
 .banner_bottom{
 
 } */
+
 .truc_tiep {
   background:  linear-gradient(96deg, #008360 -2.23%, #49EC44 117.28%);
   animation: alternate 1s cubic-bezier(0,0,.2,1) infinite;

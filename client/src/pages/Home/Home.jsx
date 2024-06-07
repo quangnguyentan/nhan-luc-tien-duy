@@ -37,7 +37,6 @@ function Home() {
   } 
   const apiGetAllStream = async () => {
     const response = await apiGetStream()
-    console.log(response)
     if(response.success) setStream(response?.stream)
   } 
 

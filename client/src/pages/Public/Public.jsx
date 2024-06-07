@@ -43,7 +43,6 @@ function Public() {
       setAds(filter)
     }
   }
-  console.log(ads)
   useEffect(() => {
     apiGetAllADS()
   }, [])

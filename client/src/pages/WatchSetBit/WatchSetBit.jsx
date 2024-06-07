@@ -15,7 +15,6 @@ function WatchSetBit() {
     window.scrollTo(0, 0)
     apiGetPost()
   }, [])
-  console.log(posts)
   
   return (
     <Container disableGutters fixed  maxWidth='lg' sx={{ maxWidth : { md : 'md', xl : 'lg', xs : 'sm'}, px : { md : 8} }}>

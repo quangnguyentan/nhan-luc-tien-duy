@@ -40,6 +40,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   const [adsSetting, setAdsSetting] = useState("");
   const [stream, setStream] = useState("");
   const [allStream, setAllStream] = useState("");
+  const [adsBannerBottomFull, setAdsBannerBottomFull] = useState("");
   const chatBoxIframe = (
     <Box
       sx={{
@@ -71,7 +72,6 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   //     document.body.removeChild(script);
   //   };
   // }, []);
-
   const apiGetByIDStream = async (idStr) => {
     const response = await apiGetStreamById(idStr);
     if (response?.success) setStream(response?.streamId);
@@ -94,6 +94,15 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
           return el;
         });
       setAdsSetting(adsSet);
+      const bannerBottom = response?.ads
+        ?.filter(
+          (f) =>
+            f?.root_domain === "sovo.link" && f?.position === "RIBBON_VIDEO"
+        )
+        ?.map((el) => {
+          return el;
+        });
+      setAdsBannerBottomFull(bannerBottom[0]);
     }
   };
 
@@ -183,22 +192,101 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   //        clearInterval(timeNextArrow)
   //      })
   //  }, [])
+  const handleChangeFullscreen = () => {
+    let video;
+    // let html = `
+    //   <image src="https://img.icons8.com/?size=100&id=7FSknHLAHdnP&format=png&color=000000"/>
+    // `
+
+    document.addEventListener("fullscreenchange", function () {
+      var isFullscreen = document.fullscreenElement !== null;
+      if (isFullscreen && adsBannerBottomFull) {
+        // Nếu video ở chế độ fullscreen, hiển thị banner GIF
+        var banner = document.createElement("img");
+        var icon = document.createElement("img");
+        const phoneWidth = 480; // Đặt theo ý thích của bạn
+        const phoneHeight = 900; // Đặt theo ý thích của bạn
+
+        banner.src = `${adsBannerBottomFull?.file_url}`;
+        banner.style.position = "absolute";
+        banner.style.bottom = 0;
+        banner.style.left = 0;
+        banner.style.width = "100%";
+        banner.style.height = "80px";
+        banner.style.cursor = "pointer";
+        banner.style.backgroundRepeat = "no-repeat";
+        banner.style.zIndex = "10";
+        icon.src =
+          "https://img.icons8.com/?size=100&id=46&format=png&color=000000";
+        icon.style.position = "absolute";
+        icon.style.cursor = "pointer";
+        icon.style.bottom = "40px";
+        icon.style.right = "0";
+        icon.style.width = "50px";
+        icon.style.height = "50px";
+        icon.style.display = "flex";
+        icon.style.zIndex = "9999";
+
+        document.getElementById("my-video").appendChild(banner);
+        document.getElementById("my-video").appendChild(icon);
+
+        var hideBannerAndIcon = function () {
+          banner.style.display = "none";
+          icon.style.display = "none";
+        };
+        if (
+          window.innerWidth <= phoneWidth ||
+          window.innerHeight <= phoneHeight
+        ) {
+          banner.style.display = "none";
+          icon.style.display = "none";
+        }
+        window.addEventListener("click", hideBannerAndIcon);
+        var transferLink = function () {
+          window.open(
+            "https://www.king368uefa.com/vi-VN/JoinNow?btag=b_749__236",
+            "_blank"
+          );
+        };
+        banner.addEventListener("click", transferLink);
+      } else {
+        // Nếu video thoát khỏi chế độ fullscreen, loại bỏ banner GIF
+        var banner = document.querySelector(
+          `img[src='${adsBannerBottomFull?.file_url}']`
+        );
+        var icon = document.querySelector(
+          'img[src="https://img.icons8.com/?size=100&id=46&format=png&color=000000"]'
+        );
+        if (banner && icon) {
+          banner.remove();
+          icon.remove();
+        }
+      }
+      return () => {
+        video.removeEventListener("fullscreenchange");
+      };
+    });
+  };
   const handleClick = () => {
     const video = document.getElementById("my-video");
+
     const adSkipButton = document.getElementById("ad-skip-button");
-    const userGestureEvents = ["touchend", "click", "dblclick", "keydown"];
+    const userGestureEvents = ["touchend", "click"];
     const handleAdSkip = () => {
       video.play();
     };
     userGestureEvents.forEach((event) => {
       adSkipButton.addEventListener(event, handleAdSkip);
     });
+
     return () => {
       userGestureEvents.forEach((event) => {
         adSkipButton.removeEventListener(event, handleAdSkip);
       });
+      video.removeEventListener("fullscreenchange");
     };
   };
+
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const script = document.createElement("script");
@@ -212,14 +300,13 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
     document.head.appendChild(link);
 
     const handleLocationChange = () => {
-      window.location.reload()
+      window.location.reload();
     };
 
     window.addEventListener("popstate", handleLocationChange);
     window.addEventListener("DOMContentLoaded", handleClick);
     window.addEventListener("DOMContentLoaded", handleLocationChange);
-
-
+    handleChangeFullscreen();
     // Cleanup function
     return () => {
       window.removeEventListener("popstate", handleLocationChange);
@@ -227,7 +314,6 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
       document.head.removeChild(link);
       window.removeEventListener("DOMContentLoaded", handleClick);
       window.removeEventListener("DOMContentLoaded", handleLocationChange);
-
     };
   }, [handleClick]);
   return (
@@ -540,7 +626,29 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
           }
         }}/> */}
             {visible && stream && (
-              <Box sx={{ height: { md: "470px", xs: "230px" } }}>
+              <Box
+                sx={{
+                  height: { md: "470px", xs: "300px" },
+                  position: "relative",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                {/* <Box className="banner_bottom_fullscreen">
+                {adsSetting && adsSetting?.map((el) => (
+                  <Link key={el?.id}>
+                    {el?.position === "RIBBON_VIDEO" ? (
+                      <img
+                        src={el?.file_url}
+                        alt=""
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </Link>
+                ))}
+                </Box> */}
                 <video
                   id="my-video"
                   class="video-js"
@@ -558,40 +666,6 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                     type="application/x-mpegURL"
                   />
                 </video>
-                {/* <Box className="banner_bottom" sx={{ 
-                 zIndex: 1,
-                  objectFit: "contain",
-                  position: "absolute",
-                  right: { xs: "0", md: "0" },
-                  display: " flex",
-                  color: "white",
-                  fontSize: "10px",
-                  textTransform: "capitalize",
-                  cursor: "pointer",
-                  top: { md: -45, xs: -40 },
-                  width: "100%",
-                  height : '40px'
-              }}>
-              {data && data?.map((el) => (
-                  <Link key={el?.id}>
-                    {el?.position === "RIBBON_VIDEO" ? (
-                      <img
-                        className="react-player1"
-                        src={el?.file_url}
-                        style={{
-                          zIndex : 1000000000000000000,
-                          width: "100%",
-                          objectFit: "contain",
-                          height: "fit-content",
-                        }}
-                        alt=""
-                      />
-                    ) : (
-                      ""
-                    )}
-                  </Link>
-                ))}
-              </Box> */}
               </Box>
             )}
             {/* {location.pathname.slice(0, 2) === "/" && stream && (
@@ -653,7 +727,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
               <Box
                 sx={{
                   position: "absolute",
-                  top: { md: -35, xs: -20 },
+                  top: { md: -45, xs: -20 },
                   left: 10,
                   objectFit: "contain",
                   width: { md: "90px", xs: "50px", zIndex: 1 },
@@ -677,7 +751,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                   fontSize: "10px",
                   textTransform: "capitalize",
                   cursor: "pointer",
-                  top: { md: -70, xs: -60 },
+                  top: { md: -55, xs: -35 },
                   width: "90px",
                 }}
               >
@@ -720,9 +794,9 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                     }}
                   />
                 </Link>
-               
               </Box>
-              <Box sx={{ 
+              <Box
+                sx={{
                   zIndex: 1,
                   objectFit: "contain",
                   position: "absolute",
@@ -732,29 +806,31 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                   fontSize: "10px",
                   textTransform: "capitalize",
                   cursor: "pointer",
-                  top: { md: -45, xs: -40 },
+                  top: { md: -25, xs: -10 },
                   width: "100%",
-                  height : '40px'
-              }}>
-              {data && data?.map((el) => (
-                  <Link key={el?.id}>
-                    {el?.position === "RIBBON_VIDEO" ? (
-                      <img
-                        className="react-player1"
-                        src={el?.file_url}
-                        style={{
-                          zIndex : 1000000000000000000,
-                          width: "100%",
-                          objectFit: "contain",
-                          height: "fit-content",
-                        }}
-                        alt=""
-                      />
-                    ) : (
-                      ""
-                    )}
-                  </Link>
-                ))}
+                  height: "40px",
+                }}
+              >
+                {adsSetting &&
+                  adsSetting?.map((el) => (
+                    <Link key={el?.id}>
+                      {el?.position === "RIBBON_VIDEO" ? (
+                        <img
+                          className="react-player1"
+                          src={el?.file_url}
+                          style={{
+                            zIndex: 1,
+                            width: "100%",
+                            objectFit: "contain",
+                            height: "fit-content",
+                          }}
+                          alt=""
+                        />
+                      ) : (
+                        ""
+                      )}
+                    </Link>
+                  ))}
               </Box>
             </Box>
           </Box>

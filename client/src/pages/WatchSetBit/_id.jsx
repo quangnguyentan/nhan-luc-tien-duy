@@ -17,7 +17,6 @@ function CustomCardById({ title,  data }) {
     const [posts, setPosts] = useState('')
     const apiGetPost = async (ids) => {
         const response = await apiGetPostsById(ids)
-        console.log(response)
         if(response.success) setPosts(response?.postsId)
     }
     useEffect(() => {
