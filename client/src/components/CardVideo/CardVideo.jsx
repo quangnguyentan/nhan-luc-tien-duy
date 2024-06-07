@@ -806,7 +806,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                   fontSize: "10px",
                   textTransform: "capitalize",
                   cursor: "pointer",
-                  top: { md: -25, xs: -10 },
+                  top: { md: -25, xs: -13 },
                   width: "100%",
                   height: "40px",
                 }}
@@ -834,7 +834,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
               </Box>
             </Box>
           </Box>
-
+            <Box sx={{ height : { md : 0 ,xs : '20px'}}}/>
           {!blv && ads && (
             <>
               <Box sx={{ display: "flex ", justifyContent: "space-between" }}>
