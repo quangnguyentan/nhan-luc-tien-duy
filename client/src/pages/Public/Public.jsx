@@ -48,7 +48,7 @@ function Public() {
   }, [])
   return (
    <>
-     {ads && <Container disableGutters maxWidth={false}>
+     {ads && <Container disableGutters sx={{  }} maxWidth={false}>
      {/* <div>
      <Modal
        open={open}

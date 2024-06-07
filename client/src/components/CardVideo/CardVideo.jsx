@@ -318,10 +318,10 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
   }, [handleClick]);
   return (
     <Box
-      sx={{ py: { height: "fit-content", md: 0, xs: 0, bgcolor: "#1B1C21" } }}
+      sx={{ height: "fit-content", md: 0, xs: 0, bgcolor: "#1B1C21" , p : 0 }}
     >
       {!titleContent && matches && (
-        <Container disableGutters sx={{ py: { md: 0, xs: 0 } }}>
+        <Container disableGutters sx={{ py: { md: 0, xs: 0 }, px : 2 }}>
           {adsSetting &&
             adsSetting?.map((el) => (
               <Box key={el?.id}>
@@ -628,11 +628,9 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
             {visible && stream && (
               <Box
                 sx={{
-                  height: { md: "470px", xs: "300px" },
-                  position: "relative",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  height: { md: "470px", xs: "180px" },                 
+                 
+                 
                 }}
               >
                 {/* <Box className="banner_bottom_fullscreen">
@@ -657,8 +655,8 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                   autoPlay="autoPlay"
                   playsInline
                   poster={!stream[0]?.m3u8_url ? qc : ""}
-                  videoWidth="inherit"
-                  videoHeight="inherit"
+                  videoWidth="100%"
+                  videoHeight="0px"
                   data-setup="{}"
                 >
                   <source
@@ -727,14 +725,14 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
               <Box
                 sx={{
                   position: "absolute",
-                  top: { md: -45, xs: -20 },
-                  left: 10,
+                  top: { md: -45, xs:  location.pathname.slice(0, 2) === "/" && visible === true ?  0 : -35 },
+                  left: 20,
                   objectFit: "contain",
                   width: { md: "90px", xs: "50px", zIndex: 1 },
                 }}
               >
                 <img
-                  // src="https://sovotv.live/uploads/resources/images/cf79ad4adc30f0e7cffc0956e68047cc.jpg"
+                  src="https://sovotv.live/uploads/resources/images/6dabfc682d7291dbcdb56e76cd965ae6.jpg"
                   style={{ width: "300px" }}
                   alt=""
                 />
@@ -744,14 +742,14 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                   zIndex: 1,
                   objectFit: "contain",
                   position: "absolute",
-                  right: { xs: "30%", md: "15%" },
+                  right: { xs: "32%", md: "15%" },
                   display: " flex",
                   gap: { md: 2, xs: 1 },
                   color: "white",
                   fontSize: "10px",
                   textTransform: "capitalize",
                   cursor: "pointer",
-                  top: { md: -55, xs: -35 },
+                  top: { md: -55, xs:  location.pathname.slice(0, 2) === "/" && visible === true ? 0 : -35 },
                   width: "90px",
                 }}
               >
@@ -802,12 +800,13 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                   position: "absolute",
                   right: { xs: "0", md: "0" },
                   display: " flex",
+                  alignItems : 'start',
                   color: "white",
                   fontSize: "10px",
                   textTransform: "capitalize",
                   cursor: "pointer",
-                  top: { md: -25, xs: -13 },
-                  width: "100%",
+                  top: { md: -25, xs: location.pathname.slice(0, 2) === "/" && visible === true ? 20 :  -10 },
+                  width: {md : "100%", xs : '100%'},
                   height: "40px",
                 }}
               >
@@ -837,7 +836,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
             <Box sx={{ height : { md : 0 ,xs : '20px'}}}/>
           {!blv && ads && (
             <>
-              <Box sx={{ display: "flex ", justifyContent: "space-between" }}>
+              <Box sx={{ display: "flex ", justifyContent: "space-between", pt : 2 }}>
                 <Button
                   variant="contained"
                   lassName="button_info"
@@ -988,7 +987,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
           />
         </Box>
       </Box> */}
-      <Box sx={{ height: "fit-content" }}>
+      <Box sx={{ height: "fit-content", px : 2 }}>
         {location.pathname.slice(0, 2) !== "/" ? (
           <CustomGrid start={0} end={6} />
         ) : (

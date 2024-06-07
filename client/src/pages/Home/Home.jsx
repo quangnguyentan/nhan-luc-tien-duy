@@ -45,7 +45,7 @@ function Home() {
     apiGetPost() &&  apiGetAllADS() && apiGetAllStream()
   }, [])
   return (
-      <Container fixed disableGutters sx={{ height : (theme) => theme.football.cardVideoHeight, width : { md : '70%', xs : '100%'} }}>
+      <Container fixed disableGutters sx={{ height : (theme) => theme.football.cardVideoHeight, width : { md : '70%', xs : '100%'}  }}>
         <Box sx={{ p : { md : 0, xs : 0}, m : { md : 0, xs : 0} }}>
         {ads && stream && <CardVideo data={ads} dataStream={stream} titleContent blv/>}
         </Box>
