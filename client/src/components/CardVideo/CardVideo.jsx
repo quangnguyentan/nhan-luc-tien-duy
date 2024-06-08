@@ -271,10 +271,30 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
       };
     });
   };
+  function waitInitElement(selector) {
+    return new Promise(resolve => {
+        let interval = setInterval(() => {
+            let exist = document.querySelector(selector)
+            if (exist !== undefined && exist != null && exist !== false) {
+                clearInterval(interval)
+                resolve(true)
+            }
+        }, 1000)
+    })
+}
+  const waitButtonClick = () => {
+    waitInitElement('#my-video_html5_api').then((rs) => {
+      const video = document.getElementById("my-video_html5_api");
+      video.play()
+    })
+  }
+    
+  
 
   const handleClick = () => {
-    const video = document.getElementById("my-video");
-
+    const video = document.getElementById("my-video_html5_api");
+    console.log('abc')
+    console.log(video)
     const adSkipButton = document.getElementById("ad-skip-button");
     const userGestureEvents = ["touchend", "click"];
     const handleAdSkip = () => {
@@ -292,7 +312,8 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
     };
   };
   document.addEventListener("DOMContentLoaded", function () {
-    var player = videojs("my-video");
+    var player = videojs("my-video_html5_api");
+    console.log(player)
     player.ready(function () {
       this.play(); // Auto play
     });
@@ -308,22 +329,14 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
     script.async = true;
     document.body.appendChild(script);
     document.head.appendChild(link);
-
-    const handleLocationChange = () => {
-      window.location.reload();
-    };
-
-    window.addEventListener("popstate", handleLocationChange);
+   
     window.addEventListener("DOMContentLoaded", handleClick);
-    window.addEventListener("DOMContentLoaded", handleLocationChange);
     handleChangeFullscreen();
     // Cleanup function
     return () => {
-      window.removeEventListener("popstate", handleLocationChange);
       document.body.removeChild(script);
       document.head.removeChild(link);
       window.removeEventListener("DOMContentLoaded", handleClick);
-      window.removeEventListener("DOMContentLoaded", handleLocationChange);
     };
   }, [handleClick]);
   return (
@@ -588,6 +601,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                     id="ad-skip-button"
                     endIcon={<SkipNextIcon />}
                     onClick={() => {
+                      waitButtonClick()
                       setVisible(true);
                       setHiddenButton(true);
                     }}
