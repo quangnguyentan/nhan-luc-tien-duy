@@ -72,7 +72,7 @@ export default function DrawRight() {
   };
   return (
     <Container  
-     sx={{ display: 'flex', justifyContent : 'end',}}>
+     sx={{ display: 'flex', justifyContent : 'end'}}>
      
       <AppBar open={open} sx={{ bgcolor : '#2b2b2b', boxShadow : 'none', position : 'static' }}>
         <Toolbar >
@@ -85,9 +85,7 @@ export default function DrawRight() {
             size='large'
             sx={{ ...(open && { display: 'none'}), border : 'none'  }}
           >
-           <Box sx={{ bgcolor : 'white' ,position : 'relative' }}>
-            <MenuIcon sx={{  color: 'white', position : 'absolute', top : '-10px', right : '-70px'}}/>
-           </Box>
+            <MenuIcon sx={{color: 'white'}}/>
           </IconButton>
         </Toolbar>
       </AppBar>

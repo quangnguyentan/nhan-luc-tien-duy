@@ -1,27 +1,20 @@
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import bannerFooterRight from "../../assets/banner_footer_right.gif";
-import bannerFooterLeft from "../../assets/banner_footer.gif";
-import Typography from "@mui/material/Typography";
-import CloseIcon from "@mui/icons-material/Close";
-import { useState } from "react";
+import React from "react";
 
-function Footer() {
-  const [hidden, setHidden] = useState(false);
-  const AStyles = {
-    display: "block",
-    height: "100%",
-  };
-  const IStyles = {
-    display: "block",
-    width: "100%",
-    height: "100%",
-    objectFit: "fill"
-  };
+const AStyles = {
+  display: "block",
+  height: "100%",
+};
+const IStyles = {
+  display: "block",
+  width: "100%",
+  height: "100%",
+  objectFit: "fill"
+};
+
+function Footer1() {
   return (
     <>
-      {!hidden && (
-        <div
+      <div
         style={{
           position: "fixed",
           bottom: 0,
@@ -47,7 +40,6 @@ function Footer() {
           </a>
         </div>
         <button
-          onClick={() => setHidden(!hidden)}
           style={{
             position: "absolute",
             top: '8px',
@@ -63,9 +55,8 @@ function Footer() {
           X
         </button>
       </div>
-      )}
     </>
   );
 }
 
-export default Footer;
+export default Footer1;

@@ -13,6 +13,7 @@ import { Button, Chip, Modal } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
 import popup from '../../assets/popup.gif'
 import '../../index.css'
+import Footer1 from '../../components/Footer1/Footer'
 function Public() {
   const [ads, setAds] = useState('')
   const location = useLocation()
@@ -48,7 +49,7 @@ function Public() {
   }, [])
   return (
    <>
-     {ads && <Container disableGutters sx={{  }} maxWidth={false}>
+ {ads && <Container disableGutters maxWidth={false}>
      {/* <div>
      <Modal
        open={open}
@@ -74,15 +75,15 @@ function Public() {
       <AppBar/>
       <Marquee/>
     </Box>
-    <Container disableGutters  fixed sx={{ display : 'flex', alignItems : 'center', gap : 1, py : 1, px : location.pathname === '/' ? 0 : 3}}>
+    <Container disableGutters  fixed sx={{ display : 'flex', alignItems : 'center', gap : 1, py : 1, px : location.pathname === '/' ? 1 : 3}}>
        <Link style={{ textDecoration : 'none' }}>
-          <Button className='button_info' sx={{ color : 'white', borderRadius : '5px', fontWeight : 600, width : {md : 'fit-content', xs : 'fit-content'}, height: {md : '40px', xs : '25px'}, fontSize : '10px' }} > Cược TA88 </Button>
+          <Button className='button_info' sx={{ color : 'white', borderRadius : '5px', fontWeight : 600, width : {md : 'fit-content', xs : 'fit-content'}, height: {md : '40px', xs : '25px'}, fontSize : '10px' }} > Cược Ngay </Button>
         </Link>
         <Link style={{ textDecoration : 'none' }}>
-        <Button  className='button_info' sx={{ color : 'white', borderRadius : '5px', fontWeight : 600, width : {md : 'fit-content', xs : 'fit-content'}, height: {md : '40px', xs : '25px'}, fontSize : '10px',  }} > Cược Nbet </Button>
+        <Button  className='button_info' sx={{ color : 'white', borderRadius : '5px', fontWeight : 600, width : {md : 'fit-content', xs : 'fit-content'}, height: {md : '40px', xs : '25px'}, fontSize : '10px',  }} > Cược Ngay </Button>
         </Link>
         <Link style={{ textDecoration : 'none' }}>
-        <Button  className='button_info' sx={{ color : 'white', borderRadius : '5px', fontWeight : 600, width : {md : 'fit-content', xs : 'fit-content'}, height: {md : '40px', xs : '25px'}, fontSize : '10px',  }} > Cược Fabet </Button>
+        <Button  className='button_info' sx={{ color : 'white', borderRadius : '5px', fontWeight : 600, width : {md : 'fit-content', xs : 'fit-content'}, height: {md : '40px', xs : '25px'}, fontSize : '10px',  }} > Cược Ngay </Button>
         </Link>
     </Container>
     {location.pathname?.slice(0, 6) === "/video" ? '' : <Banner data={ads} />}
@@ -111,9 +112,8 @@ function Public() {
            ))}
   
    </Box>
-    <Box sx={{ height : (theme) => theme.football.FOOTER_BANNER_HEIGHT}}>
-      <Footer data={ads} />
-    </Box>
+   
+    <Footer  />
   </Container>}
    </>
   )

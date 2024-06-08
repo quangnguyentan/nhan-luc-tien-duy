@@ -32,6 +32,8 @@ body {
 }
 .video-js{
   background-color: none;
+  width: 100% !important;
+  height: 100% !important;
 }
 .video-js .vjs-tech{
   position: absolute;
@@ -43,14 +45,47 @@ body {
   position: absolute !important;
   overflow-x: hidden;
 }
-
+.css-hyum1k-MuiToolbar-root{
+  position: absolute !important;
+  right: 0;
+  top : 50%;
+  transform: translateY(-50%) 
+}
 
 #my-video{
   width: 100%;
   height: inherit;
   background-color: transparent;
 }
+@media screen and (min-width: 0px) and (max-width: 400px ) {
+  /* CSS dành cho điện thoại có màn hình dưới 480px */
+  /* Ví dụ: */
+  .video_container {
+    height: 220px;
+  }
+}
 
+/* CSS cho điện thoại có màn hình lớn hơn 480px và nhỏ hơn 768px */
+@media screen and (min-width: 401px) and (max-width: 767px) {
+  /* CSS dành cho điện thoại có màn hình từ 481px đến 767px */
+  /* Ví dụ: */
+  .video_container {
+      height: 240px;
+  }
+}
+@media screen and (min-width: 481px) and (max-width: 767px) {
+  /* CSS dành cho điện thoại có màn hình từ 481px đến 767px */
+  /* Ví dụ: */
+  .video_container {
+      height: 230px;
+  }
+}
+@media screen and (max-width: 768px) {
+  /* CSS dành cho điện thoại có màn hình từ 481px đến 767px */
+  /* Ví dụ: */
+  .video_container {
+  }
+}
 
 .vjs-control-bar{
   top: 0;

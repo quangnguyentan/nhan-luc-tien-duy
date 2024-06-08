@@ -11,11 +11,11 @@ function Banner({ data }) {
       maxWidth="lg"
       fixed
       sx={{
-        pb: { xs: 15, md: 0 },
         flexDirection: { md: "row", xs: "column" },
         display: { md: "flex", xs: "flex" },
-        height: { xs: "30px", md: "90px" },
+        height: { xs: "50px", md: "90px" },
         width: { xs: "100%", md: "70%" },
+        justifyContent : 'center',
       }}
     >
       {data
@@ -26,7 +26,6 @@ function Banner({ data }) {
               src={el?.file_url}
               alt="logo"
               style={{
-                objectFit: "contain",
                 width: { md: "50%", xs: "100%" },
               }}
             />

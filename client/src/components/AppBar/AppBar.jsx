@@ -9,11 +9,11 @@ function AppBar() {
 
 
   return (
-    <Box sx={{ height : (theme) =>theme.football.appBarHeight, width: '100%', overflowY : 'hidden', overflowX: 'auto', '&::webkit-scrollbar-track' : {
+    <Box sx={{ position : 'relative', height : (theme) =>theme.football.appBarHeight, width: '100%', overflowY : 'hidden', overflowX: 'auto', '&::webkit-scrollbar-track' : {
       m : 2
     }, backgroundColor : '#2b2b2b' , px : { sm : 0, md : 2, xs : 1, lg : 32}, display : 'flex', alignItems : 'center', justifyContent : 'space-between'  }} >
           <Link to="/" >
-            <img src={logo} style={{ objectFit : 'cover', minWidth : '160px' }} alt="logo"  width={200} height={70}  />
+            <img src={logo} style={{ objectFit : 'cover', minWidth : '160px', display : 'flex', alignItems : 'center' }} alt="logo"  width={200} height={70}  />
           </Link>
           <Menu/>
          <Link style={{ textDecoration : 'none' }}>

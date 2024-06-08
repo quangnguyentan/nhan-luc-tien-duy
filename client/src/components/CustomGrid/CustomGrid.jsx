@@ -588,7 +588,7 @@ function CustomGrid({
                       account
                         ?.filter((acc) => acc?.id === el?.account_id)
                         ?.map((result) => (
-                          <Grid item xs={2} sm={4} md={4} key={el?.id}>
+                          <Grid item xs={2} sm={4} md={6} key={el?.id}>
                             <Link
                               to={{
                                 pathname: `/video/${el?.id}/${result?.id}/${el?.slug}`,
@@ -685,8 +685,8 @@ function CustomGrid({
                                     <Box sx={{ flexDirection: "column" }}>
                                       <img
                                         width="18px"
-                                        height="18px"
-                                        style={{ objectFit: "cover" }}
+                                        
+                                        style={{ objectFit: "fill" , height : "12px" }}
                                         src={el?.host_club_logo_url}
                                         alt=""
                                       />
@@ -709,6 +709,7 @@ function CustomGrid({
                                         sx={{
                                           fontSize: "15px",
                                           fontWeight: 600,
+                                          width : '120px'
                                         }}
                                       >
                                         {el?.start_time?.slice(0, -3)} -{" "}
@@ -727,13 +728,12 @@ function CustomGrid({
                                     <Box
                                       sx={{
                                         flexDirection: "column",
-                                        height: "50px",
+                                        py: 1,
                                       }}
                                     >
                                       <img
                                         width="18px"
-                                        height="18px"
-                                        style={{ objectFit: "cover" }}
+                                        style={{ objectFit: "fill", height : "12px"  }}
                                         src={el?.guest_club_logo_url}
                                         alt=""
                                       />

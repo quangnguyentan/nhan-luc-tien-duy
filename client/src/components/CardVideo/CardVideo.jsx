@@ -3,6 +3,9 @@ import ReactHlsPlayer from "react-hls-player";
 import Box from "@mui/material/Box";
 import CustomGrid from "../CustomGrid/CustomGrid";
 import BannerBottomVideo from "../../assets/banner_video.gif";
+import FacebookIcon from '@mui/icons-material/Facebook';
+import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
+import TelegramIcon from '@mui/icons-material/Telegram';
 import { Helmet } from "react-helmet";
 import qc from "../../assets/qc.jpg";
 import {
@@ -45,7 +48,8 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
     <Box
       sx={{
         width: { md: "30%", xs: "100%" },
-        height: { md: "470px", xs: "350px" },
+        height: { md: "490px", xs: "350px" },
+        py : 2
       }}
     >
       <iframe
@@ -267,6 +271,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
       };
     });
   };
+
   const handleClick = () => {
     const video = document.getElementById("my-video");
 
@@ -286,7 +291,12 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
       video.removeEventListener("fullscreenchange");
     };
   };
-
+  document.addEventListener("DOMContentLoaded", function () {
+    var player = videojs("my-video");
+    player.ready(function () {
+      this.play(); // Auto play
+    });
+  });
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const script = document.createElement("script");
@@ -317,11 +327,9 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
     };
   }, [handleClick]);
   return (
-    <Box
-      sx={{ height: "fit-content", md: 0, xs: 0, bgcolor: "#1B1C21" , p : 0 }}
-    >
+    <Box sx={{ height: "fit-content", md: 0, xs: 0, bgcolor: "#1B1C21", p: 0 , pt : 1 }}>
       {!titleContent && matches && (
-        <Container disableGutters sx={{ py: { md: 0, xs: 0 }, px : 2 }}>
+        <Container disableGutters sx={{ py: { md: 0, xs: 0 }, px: 2 }}>
           {adsSetting &&
             adsSetting?.map((el) => (
               <Box key={el?.id}>
@@ -486,6 +494,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
               </Box>
             </Box>
           </Box>
+          
           <Box
             sx={{
               width: "100%",
@@ -497,20 +506,57 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
               pt: 1,
             }}
           >
-            <Box sx={{ fontSize: "15px", fontWeight: 600 }}>
+            <Box sx={{ fontSize: { md : "15px", xs : '12px'}, fontWeight: 600, py : 1 }}>
               Phát trực tiếp {matches[0]?.host_club_name} vs{" "}
               {matches[0]?.guest_club_name} vào lúc{" "}
               {matches[0]?.start_time?.slice(0, -3)}, ngày{" "}
               {convertDate(matches[0]?.start_date)}
             </Box>
-            <Box sx={{ fontSize: "13px", fontStyle: "italic", color: "gray" }}>
-              {matches[0]?.tournament_name}
+            <Box
+              sx={{
+                fontStyle: "italic",
+                color: "gray",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: {md : "17px", xs : '12px'},
+                  textTransform: "capitalize",
+                  display: { md: "flex", xs: "inline-block" },
+                }}
+              >
+                {matches[0]?.tournament_name}
+              </Typography>
+              <Box sx={{display: "flex",  }}>
+                <Typography
+                  sx={{
+                    fontSize: { md : "15px", xs : '12px'},
+                    textTransform: "capitalize",
+                    display: { md: "flex", xs: "inline-block" },
+                    
+                  }}
+                >
+                  Người bình luận:&nbsp;
+                </Typography>
+                
+                <Typography
+                  sx={{
+                    fontSize: { md : "15px", xs : '12px'},
+                    textTransform: "capitalize",
+                    display: { md: "flex", xs: "inline-block" },
+                  }}
+                >
+                  {account[0]?.name}
+                </Typography>
+              </Box>
             </Box>
           </Box>
         </Container>
       )}
-      <Box sx={{ height: "20px" }} />
-      <Box sx={{ display: { md: "flex" }, gap: 2 }}>
+      <Box sx={{ display: { md: "flex" }, gap: 2,  }}>
         <Box
           sx={{
             width: {
@@ -520,6 +566,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
             height: "100%",
           }}
         >
+        {location.pathname.slice(0, 2) !== "/" ? <Box sx={{height : '10px'}}/> : ''}
           {!hiddenButton && (
             <Box
               sx={{
@@ -589,75 +636,26 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
           )}
 
           <Box sx={{ width: "100%", height: "100%" }}>
-            {/* <video
-                id="video"
-                type="application/x-mpegURL"
-                crossOrigin="anonymous"
-                class="videoCentered"
-                width="100%"
-                height="380"
-                muted
-                autoplay
-                preload="auto"
-                controls
-              ></video> */}
-            {/* <video
-                id="video"
-                class="video-js"
-                controls
-                preload="auto"
-                width="640"
-                height="264"
-                data-setup="{}"
-              >
-                <source src="https://10407a55ad3.vws.vegacdn.vn/live/_definst_/stream_9_3cc1894f/playlist.m3u8" type="application/x-mpegURL" />
-              </video> */}
-            {/* <ReactPlayer width='100%'
-            style={{ objectFit : 'cover' }}
-            className='viewport-header'
-            height='100%' playing  controls  url={
-          [
-            'https://10407a55ad3.vws.vegacdn.vn/live/_definst_/stream_9_3cc1894f/playlist.m3u8',
-          ]
-        
-        } config={{
-          file : {
-            hlsOptions 
-          }
-        }}/> */}
             {visible && stream && (
               <Box
+                className="video_container"
                 sx={{
-                  height: { md: "470px", xs: "180px" },                 
-                 
-                 
+                  height: { md: "470px" },
                 }}
               >
-                {/* <Box className="banner_bottom_fullscreen">
-                {adsSetting && adsSetting?.map((el) => (
-                  <Link key={el?.id}>
-                    {el?.position === "RIBBON_VIDEO" ? (
-                      <img
-                        src={el?.file_url}
-                        alt=""
-                      />
-                    ) : (
-                      ""
-                    )}
-                  </Link>
-                ))}
-                </Box> */}
                 <video
                   id="my-video"
                   class="video-js"
                   controls="controls"
                   preload="auto"
                   autoPlay="autoPlay"
+                  muted="true"
                   playsInline
                   poster={!stream[0]?.m3u8_url ? qc : ""}
                   videoWidth="100%"
-                  videoHeight="0px"
+                  videoHeight="100%"
                   data-setup="{}"
+                  height="inherit"
                 >
                   <source
                     src={stream[0]?.m3u8_url}
@@ -666,30 +664,10 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                 </video>
               </Box>
             )}
-            {/* {location.pathname.slice(0, 2) === "/" && stream && (
-              <Box sx={{ height : { md : '470px' , xs : '230px'} }}>
-              <video
-                  id="my-video"
-                  class="video-js"
-                  controls="controls"
-                  preload="auto"
-                  autoPlay="autoPlay"
-                  playsInline
-                  poster= {!stream[0]?.m3u8_url ? qc : ""}
-                  videoWidth='inherit'
-                  videoHeight='inherit'
-                  data-setup='{}'
-                >
-                <source
-                    src={stream[0]?.m3u8_url}
-                    type="application/x-mpegURL"
-                  
-                  />
-                </video>
-              </Box>
-            )} */}
+
             {!visible && ads && (
               <Player
+                controls={false}
                 width="100%"
                 playsInline
                 height="100%"
@@ -700,15 +678,16 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                 }
                 preload="auto"
                 autoPlay="autoPlay"
+                muted="true"
                 className="customIcon"
               >
-                <ControlBar autoHide={true}>
-                  <ControlBar>
-                    <PlayToggle />
-                    <VolumeMenuButton />
+                <ControlBar disableDefaultControls autoHide={true}>
+                  <ControlBar disableDefaultControls>
+                    {/* <PlayToggle /> */}
+                    {/* <VolumeMenuButton /> */}
                   </ControlBar>
-                  <ControlBar>
-                    <FullscreenToggle />
+                  <ControlBar disableDefaultControls>
+                    {/* <FullscreenToggle /> */}
                   </ControlBar>
                 </ControlBar>
                 <BigPlayButton position="center" />
@@ -725,8 +704,14 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
               <Box
                 sx={{
                   position: "absolute",
-                  top: { md: -45, xs:  location.pathname.slice(0, 2) === "/" && visible === true ?  0 : -35 },
-                  left: 20,
+                  bottom: {
+                    md: 25,
+                    xs:
+                      location.pathname.slice(0, 2) === "/" && visible === true
+                        ? 0
+                        : 0,
+                  },
+                  left: 12,
                   objectFit: "contain",
                   width: { md: "90px", xs: "50px", zIndex: 1 },
                 }}
@@ -742,15 +727,20 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                   zIndex: 1,
                   objectFit: "contain",
                   position: "absolute",
-                  right: { xs: "32%", md: "15%" },
+                  right: { xs: '12px', md: "12px" },
                   display: " flex",
                   gap: { md: 2, xs: 1 },
                   color: "white",
                   fontSize: "10px",
                   textTransform: "capitalize",
                   cursor: "pointer",
-                  top: { md: -55, xs:  location.pathname.slice(0, 2) === "/" && visible === true ? 0 : -35 },
-                  width: "90px",
+                  top: {
+                    md: -55,
+                    xs:
+                      location.pathname.slice(0, 2) === "/" && visible === true
+                        ? 0
+                        : -25,
+                  },
                 }}
               >
                 <Link
@@ -761,7 +751,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                   to="https://www.king368uefa.com/vi-VN/JoinNow?btag=b_749__236"
                 >
                   <Chip
-                    label="CƯỢC CMD68"
+                    label="CƯỢC NGAY"
                     className="button_info"
                     sx={{
                       color: "white",
@@ -770,6 +760,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                       width: { md: "fit-content", xs: "fit-content" },
                       height: { md: "25px", xs: "20px" },
                       fontSize: "10px",
+                      
                     }}
                   />
                 </Link>
@@ -780,7 +771,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                   style={{ textDecoration: "none" }}
                 >
                   <Chip
-                    label="Cược NBET"
+                    label="CƯỢC NGAY"
                     className="button_info"
                     sx={{
                       color: "white",
@@ -802,8 +793,14 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                   fontSize: "10px",
                   textTransform: "capitalize",
                   cursor: "pointer",
-                  top: { md: -25, xs: location.pathname.slice(0, 2) === "/" && visible === true ? '0' :  '0' },
-                  width: {md : "100%", xs : '100%'},
+                  top: {
+                    md: -25,
+                    xs:
+                      location.pathname.slice(0, 2) === "/" && visible === true
+                        ? "0"
+                        : "0",
+                  },
+                  width: { md: "100%", xs: "100%" },
                   height: "40px",
                 }}
               >
@@ -830,63 +827,22 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
               </Box>
             </Box>
           </Box>
-            <Box sx={{ height : { md : 0 ,xs : '20px'}}}/>
+          <Box sx={{ height: { md: 0, xs: "20px" } }} />
           {!blv && ads && (
             <>
-              <Box sx={{ display: "flex ", justifyContent: "space-between", pt : 2 }}>
-                <Button
-                  variant="contained"
-                  lassName="button_info"
-                  endIcon={<KeyboardVoiceIcon />}
-                  startIcon={<SkipNextIcon />}
-                  sx={{
-                    bgcolor: "gray",
-                    boxShadow: "none",
-                    color: "white",
-                    borderRadius: "10px",
-                    fontWeight: 600,
-                    width: "fit-content",
-                    height: "fit-content",
-                    fontSize: "10px",
-                    m: { xs: 1 },
-                  }}
-                >
-                  <Box>
-                    <Typography
-                      sx={{
-                        fontSize: "9px",
-                        textTransform: "capitalize",
-                        display: { md: "flex", xs: "inline-block" },
-                      }}
-                    >
-                      Người bình luận
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: "9px",
-                        textTransform: "capitalize",
-                        display: { md: "none", xs: "inline-block" },
-                        px: 0.5,
-                      }}
-                    >
-                      :
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: "10px",
-                        textTransform: "capitalize",
-                        display: { md: "flex", xs: "inline-block" },
-                      }}
-                    >
-                      {account[0]?.name}
-                    </Typography>
-                  </Box>
-                </Button>
-                <Box sx={{ display: { xs: "none", md: "flex" } }}>
+              <Box
+                sx={{
+                  display: "flex ",
+                  justifyContent: "space-between",
+                  py :  0.5,
+                }}
+              >
+                
+                <Box sx={{ display: { xs: "none", md: "flex", justifyContent : 'end', width : '100%' } }}>
                   <Button
                     variant="contained"
                     lassName="button_info"
-                    startIcon={<SkipNextIcon />}
+                    startIcon={<TelegramIcon />}
                     sx={{
                       bgcolor: "gray",
                       boxShadow: "none",
@@ -897,6 +853,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                       height: "fit-content",
                       fontSize: "10px",
                       m: { xs: 1 },
+                     
                     }}
                   >
                     <Box>
@@ -908,14 +865,13 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                       <Typography
                         sx={{ fontSize: "10px", textTransform: "capitalize" }}
                       >
-                        {account[0]?.name}
                       </Typography>
                     </Box>
                   </Button>
                   <Button
                     variant="contained"
                     lassName="button_info"
-                    startIcon={<SkipNextIcon />}
+                    startIcon={<FacebookOutlinedIcon sx={{ color : 'white' }} />}
                     sx={{
                       bgcolor: "gray",
                       boxShadow: "none",
@@ -932,12 +888,11 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
                       <Typography
                         sx={{ fontSize: "9px", textTransform: "capitalize" }}
                       >
-                        Nhóm Facebook
+                         Facebook
                       </Typography>
                       <Typography
                         sx={{ fontSize: "10px", textTransform: "capitalize" }}
                       >
-                        {account[0]?.name}
                       </Typography>
                     </Box>
                   </Button>
@@ -946,7 +901,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
             </>
           )}
         </Box>
-        {ChatBox ? (
+       {ChatBox ? (
           chatBoxIframe
         ) : (
           <CustomGrid size={12} flexDirectionStyle headerBox />
@@ -984,7 +939,7 @@ function CardVideo({ ChatBox, titleContent, blv, data, dataStream }) {
           />
         </Box>
       </Box> */}
-      <Box sx={{ height: "fit-content", px : 2 }}>
+      <Box sx={{ height: "fit-content", px: 2 }}>
         {location.pathname.slice(0, 2) !== "/" ? (
           <CustomGrid start={0} end={6} />
         ) : (
