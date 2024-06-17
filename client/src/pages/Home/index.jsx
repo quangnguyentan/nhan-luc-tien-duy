@@ -4,6 +4,17 @@ import { Box, Button, Divider, Typography } from "@mui/material";
 import AppsIcon from "@mui/icons-material/Apps";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
+import TagIcon from '@mui/icons-material/Tag';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
+import FaxOutlinedIcon from '@mui/icons-material/FaxOutlined';
+import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import BrowseGalleryOutlinedIcon from '@mui/icons-material/BrowseGalleryOutlined';
+import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
 const Home = () => {
   const [post, setPost] = useState("");
   const getApiPost = async () => {
@@ -19,6 +30,7 @@ const Home = () => {
     <Box
       sx={{ width: "100%", height: "fit-content", px: { xs: 1, xl: 4 }, pb: 2 }}
     >
+      
       {post && (
         <>
           <Box
@@ -151,9 +163,9 @@ const Home = () => {
                       width: "140px",
                     }}
                   >
-                    <AppsIcon fontSize="13px" />
+                    <TagIcon fontSize="13px" />
                     <Typography
-                      startIcon={<AppsIcon />}
+                    
                       sx={{
                         fontSize: "13px",
                       }}
@@ -182,7 +194,7 @@ const Home = () => {
                       width: "140px",
                     }}
                   >
-                    <AppsIcon fontSize="13px" />
+                    <LocationOnOutlinedIcon fontSize="13px" />
                     <Typography
                       startIcon={<AppsIcon />}
                       sx={{
@@ -213,7 +225,7 @@ const Home = () => {
                       width: "140px",
                     }}
                   >
-                    <AppsIcon fontSize="13px" />
+                    <PersonOutlineOutlinedIcon fontSize="13px" />
                     <Typography
                       startIcon={<AppsIcon />}
                       sx={{
@@ -243,7 +255,7 @@ const Home = () => {
                   width: "140px",
                 }}
               >
-                <AppsIcon fontSize="13px" />
+                <LocalPhoneOutlinedIcon fontSize="13px" />
                 <Typography
                   startIcon={<AppsIcon />}
                   sx={{
@@ -267,7 +279,7 @@ const Home = () => {
                   width: "140px",
                 }}
               >
-                <AppsIcon fontSize="13px" />
+                <FaxOutlinedIcon fontSize="13px" />
                 <Typography
                   startIcon={<AppsIcon />}
                   sx={{
@@ -289,7 +301,7 @@ const Home = () => {
                   width: "140px",
                 }}
               >
-                <AppsIcon fontSize="13px" />
+                <LinkOutlinedIcon fontSize="13px" />
                 <Typography
                   startIcon={<AppsIcon />}
                   sx={{
@@ -318,7 +330,7 @@ const Home = () => {
                   width: "140px",
                 }}
               >
-                <AppsIcon fontSize="13px" />
+                <EmailOutlinedIcon fontSize="13px" />
                 <Typography
                   startIcon={<AppsIcon />}
                   sx={{
@@ -354,7 +366,7 @@ const Home = () => {
                   width: "140px",
                 }}
               >
-                <AppsIcon fontSize="13px" />
+                <HomeOutlinedIcon fontSize="13px" />
                 <Typography
                   startIcon={<AppsIcon />}
                   sx={{
@@ -379,7 +391,7 @@ const Home = () => {
                   width: "140px",
                 }}
               >
-                <AppsIcon fontSize="13px" />
+                <CalendarMonthOutlinedIcon fontSize="13px" />
                 <Typography
                   startIcon={<AppsIcon />}
                   sx={{
@@ -403,7 +415,7 @@ const Home = () => {
                   width: "140px",
                 }}
               >
-                <AppsIcon fontSize="13px" />
+                <PriorityHighOutlinedIcon fontSize="13px" />
                 <Typography
                   startIcon={<AppsIcon />}
                   sx={{
