@@ -23,3 +23,16 @@ export const apiGetPostsById = (id) =>
         reject(error);
       }
     });
+    export const apiPutPost = (id, data) =>
+      new Promise(async (resolve, reject) => {
+        try {
+          const response = await axiosConfig({
+            method: "PUT",
+            url: `/post/${id}`,
+            data
+          });
+          resolve(response);
+        } catch (error) {
+          reject(error);
+        }
+      });

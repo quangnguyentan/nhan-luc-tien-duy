@@ -1,9 +1,5 @@
 const path = {
   PUBLIC: "/",
-  HOME: "",
-  TOP_NHA_CAI : "top-nha-cai",
-  SOI_KEO : "soi-keo",
-  POST : "news/:id",
-  VIDEO : "video/:idMatches/:idAccount/:slug",
+  HOME: "cong-ty-tnhh-dich-vu-tu-van-cung-ung-nhan-luc-tien-duy",
 };
 export default path;

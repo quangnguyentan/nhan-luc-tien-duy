@@ -1,0 +1,189 @@
+[
+    {   
+        "company_name" : "CÔNG TY TNHH ĐẦU TƯ QUỐC TẾ NYSEASIA VÀ CUNG ỨNG NHÂN LỰC TIẾN DUY",
+        "international_name" : "TIEN DUY HANOI CONSULTING SERVICES COMPANY LIMITED",
+        "abbreviations" : "NYSEASIA JSC",
+        "tax_code" : "0110684634",
+        "tax_address" : "Nhà số 10 ngách 11 ngõ 34 đường Tây Mỗ, Phường Tây Mỗ, Quận Nam Từ Liêm, Hà Nội",
+        "representative_name" : "NGUYỄN TIẾN DUY",
+        "phone_number" : "0778123888",
+        "fax" : "+84 778123888",
+        "website_link" : "TUVANTIENDUY.COM.VN/",
+        "email" : "nhanluctienduy@gmail.com",
+        "contact_address" : "Nhà số 10 ngách 11 ngõ 34 đường Tây Mỗ, Phường Tây Mỗ, Quận Nam Từ Liêm, Hà Nội",
+        "operation_days" : "2024-04-12",
+        "status" :  "ĐANG HOẠT ĐỘNG",
+        "details" : [
+            {
+                "id" : 1,
+                "title_company" : "CÔNG TY TNHH ĐẦU TƯ QUỐC TẾ NYSEASIA VÀ CUNG ỨNG NHÂN LỰC TIẾN DUY tiền thân là tiền thân là Công ty TNHH MTV Xuất khẩu lao động, Thương mại & Du lịch (CÔNG TY TNHH ĐẦU TƯ QUỐC TẾ NYSEASIA VÀ CUNG ỨNG NHÂN LỰC TIẾN DUY) trực thuộc Bộ Lao động Thương Binh & Xã hội được thành lập ngày  06/09/1991 với các chức năng, nhiệm vụ chính :",
+                "list" : [
+                    "- Đưa lao động, Thực tập sinh, chuyên gia Việt nam sang nước ngoài làm việc.",
+                    "- Đào tạo nguồn Nhân Lực.",
+                    "- Tư vấn du học.",
+                    "- Xúc tiến thương mại.",
+                    "- Cho thuê văn phòng và các dịch vụ khác.",
+                    "Với 26 năm kinh nghiệm đưa người lao động , Thực tập sinh kỹ năng và chuyên gia Việt Nam đi làm việc tại gần 30 quốc gia và vùng lãnh thổ trên thế giới. Với đội ngũ cán bộ nhân viên, cộng tác viên đầy trách nhiệm, tận tình, CÔNG TY TNHH ĐẦU TƯ QUỐC TẾ NYSEASIA VÀ CUNG ỨNG NHÂN LỰC TIẾN DUY luôn được các đối tác ngoài nước đánh giá cao về khả năng cung ứng nhân lực, tính hợp tác trong việc giải quyết các vấn đề phát sinh và được các tỉnh, thành trong cả nước có lao động đưa đi yên tâm, tin tưởng về công tác quản lý, hỗ trợ và theo sát người lao động Việt nam ở nước ngoài.",
+                    "CÔNG TY TNHH ĐẦU TƯ QUỐC TẾ NYSEASIA VÀ CUNG ỨNG NHÂN LỰC TIẾN DUY là thương hiệu mạnh và là một trong những Công ty có uy tín hàng đầu về cung ứng lao động ở Việt Nam."    
+                ],
+                "representative_title" : "Người đại diện theo pháp luật:",
+                "representative" : [
+                   {
+                    "id" : 1,
+                    "representative_name" : "NGUYỄN TIẾN DUY",
+                    "representative_position" : "GIÁM ĐỐC"
+                   }
+                ],
+                "members_list" : [
+                    {
+                        "id_member" : 1,
+                        "member_name" : "TRẦN VĂN QUÝ ",
+                        "member_date_of_birth" : "13/03/1988",
+                        "member_position" : "Trưởng phòng -Tài vụ "
+                    },
+                    {
+                        "id_member" : 2,
+                        "member_name" : "NGUYỄN VĂN DŨNG",
+                        "member_date_of_birth" : "15/6/1990",
+                        "member_position" : " Chuyên viên hồ sơ – Thanh lý hợp đồng đưa NLĐ Việt Nam đi làm việc ở nước ngoài."
+                    },
+                    {
+                        "id_member" : 3,
+                        "member_name" : "CAO PHẠM DƯƠNG",
+                        "member_date_of_birth" : "08/10/1988",
+                        "member_position" : "Phó phòng phụ trách Hồ sơ – Ký kết và thực hiện hợp đồng, thỏa thuận liên quan đến việc đưa NLĐ Việt Nam đi làm việc ở nước ngoài theo hợp đồng."
+                    },
+                    {
+                        "id_member" : 4,
+                        "member_name" : "NGUYỄN THÀNH TRUNG",
+                        "member_date_of_birth" : "12/03/1983",
+                        "member_position" : "Chuyên viên hồ sơ – Thanh lý hợp đồng đưa NLĐ Việt Nam đi làm việc ở nước ngoài."
+                    },
+                    {
+                        "id_member" : 5,
+                        "member_name" : "QUYẾT ĐOÀN",
+                        "member_date_of_birth" : "26/02/1983",
+                        "member_position" : "Chuyên viên hồ sơ – Thanh lý hợp đồng đưa NLĐ Việt Nam đi làm việc ở nước ngoài."
+                    },
+                    {
+                        "id_member" : 6,
+                        "member_name" : "VĂN LONG",
+                        "member_date_of_birth" : "06/06/1994",
+                        "member_position" : "Chuyên viên hồ sơ – Thanh lý hợp đồng đưa NLĐ Việt Nam đi làm việc ở nước ngoài."
+                    },
+                    {
+                        "id_member" : 7,
+                        "member_name" : "NGUYỄN ĐỨC MINH ",
+                        "member_date_of_birth" : "23/12/1983",
+                        "member_position" : "Chuyên viên hồ sơ – Thanh lý hợp đồng đưa NLĐ Việt Nam đi làm việc ở nước ngoài."
+                    },
+                    {
+                        "id_member" : 8,
+                        "member_name" : "LÊ HỮU LẬP",
+                        "member_date_of_birth" : "01/10/1985",
+                        "member_position" : "Chuyên viên hồ sơ – Thanh lý hợp đồng đưa NLĐ Việt Nam đi làm việc ở nước ngoài."
+                    },
+                    {
+                        "id_member" : 9,
+                        "member_name" : "NGUYỄN VĂN CƯỜNG",
+                        "member_date_of_birth" : "26/11/1990",
+                        "member_position" : "Chuyên viên hồ sơ – Thanh lý hợp đồng đưa NLĐ Việt Nam đi làm việc ở nước ngoài."
+                    },
+                    {
+                        "id_member" : 10,
+                        "member_name" : "NGUYEN VĂN LỢI",
+                        "member_date_of_birth" : "15/03/1985",
+                        "member_position" : "Chuyên viên hồ sơ – Thanh lý hợp đồng đưa NLĐ Việt Nam đi làm việc ở nước ngoài."
+                    },
+                    {
+                        "id_member" : 11,
+                        "member_name" : "NGUYEN TRONG TY",
+                        "member_date_of_birth" : "20/07/1995",
+                        "member_position" : "Chuyên viên hồ sơ – Thanh lý hợp đồng đưa NLĐ Việt Nam đi làm việc ở nước ngoài."
+                    },
+                    {
+                        "id_member" : 12,
+                        "member_name" : "PHẠM THI THÙY TRANG",
+                        "member_date_of_birth" : "16/03/1987",
+                        "member_position" : "Giáo viên – Tổ chức bồi dưỡng kỹ năng nghề, ngoại ngữ, giáo dục định hướng cho NLĐ trước khi đi làm việc ở nước ngoài"
+                    },
+                    {
+                        "id_member" : 13,
+                        "member_name" : "HUỲNH NGỌC HÂN",
+                        "member_date_of_birth" : "17/05/1990",
+                        "member_position" : "Giáo viên – Tổ chức bồi dưỡng kỹ năng nghề, ngoại ngữ, giáo dục định hướng cho NLĐ trước khi đi làm việc ở nước ngoài"
+                    },
+                    {
+                        "id_member" : 14,
+                        "member_name" : "VŨ NGỌC ÁNH",
+                        "member_date_of_birth" : "16/10/1988",
+                        "member_position" : "Giáo viên – Tổ chức bồi dưỡng kỹ năng nghề, ngoại ngữ, giáo dục định hướng cho NLĐ trước khi đi làm việc ở nước ngoài"
+                    },
+                    {
+                        "id_member" : 15,
+                        "member_name" : "NGÔ NHẬT KHÁNH QUỲNH",
+                        "member_date_of_birth" : "28/09/1993",
+                        "member_position" : "Chuyên viên – Hỗ trợ giới thiệu việc làm cho NLĐ sau khi về nước"
+                    },
+                    {
+                        "id_member" : 16,
+                        "member_name" : "NGUYỄN VĂN SƠN",
+                        "member_date_of_birth" : "16/02/1993",
+                        "member_position" : "Tư vấn du học - Xkld - Định hướng - Tiếp nhận hồ sơ lao động"
+                    },
+                    {
+                        "id_member" : 17,
+                        "member_name" : "NGUYỄN TẤN LỘC",
+                        "member_date_of_birth" : "31/10/1988",
+                        "member_position" : "Tư vấn du học - Xkld - Định hướng - Tiếp nhận hồ sơ Lao động"
+                    },
+                    {
+                        "id_member" : 18,
+                        "member_name" : "NGÔ VĂN PHÚ",
+                        "member_date_of_birth" : "13/11/1996",
+                        "member_position" : "Chuyên viên - Hỗ trợ giới thiệu việc làm cho NLĐ sau khi về nước "
+                    },
+                    {
+                        "id_member" : 19,
+                        "member_name" : "LÊ MINH TUẤN ",
+                        "member_date_of_birth" : "31/05/1985 ",
+                        "member_position" : "Chuyên viên hỗ trợ, tư vấn Xuất khẩu lao động + Du học "
+                    },
+                    {
+                        "id_member" : 20,
+                        "member_name" : " TRẦN NHẬT HÀO",
+                        "member_date_of_birth" : "   21/11/1988",
+                        "member_position" : "Chuyên viên - Hỗ trợ giới thiệu việc làm cho NLĐ sau khi về nước"
+                    },
+                    {
+                        "id_member" : 21,
+                        "member_name" : "NGUYỄN TẤN LỘC",
+                        "member_date_of_birth" : "30/10/1988",
+                        "member_position" : "Chuyên viên hỗ trợ, tư vấn Xuất khẩu lao động + Du học"
+                    },
+                    {
+                        "id_member" : 22,
+                        "member_name" : "HOÀNG MINH LONG",
+                        "member_date_of_birth" : "23/12/1980",
+                        "member_position" : "Giáo viên – Tổ chức bồi dưỡng kỹ năng nghề, ngoại ngữ, giáo dục định hướng cho NLĐ trước khi đi làm việc ở nước ngoài"
+                    },
+                    {
+                        "id_member" : 23,
+                        "member_name" : "NGUYỄN NHÂN",
+                        "member_date_of_birth" : "17/10/1988",
+                        "member_position" : "Chuyên viên hỗ trợ tư vấn Xklđ"
+                    },
+                    {
+                        "id_member" : 24,
+                        "member_name" : "HOÀNG HẢI HUY",
+                        "member_date_of_birth" : "20/08/1986",
+                        "member_position" : "Chuyên viên hỗ trợ tư vấn Xklđ"
+                    }
+                ]
+              
+            }
+            
+        ]
+
+    }
+]

@@ -30,6 +30,7 @@ app.use(function (req, res, next) {
     next();
 });
 initRoutes(app);
+connectDB()
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
