@@ -178,7 +178,7 @@ img {
 .header_info {
     border-radius: 0px;
     color: #fff;
-    background: linear-gradient(-45deg, #E90000, #FFE998, #EF88BB, #FFB330);
+    background: linear-gradient(270deg, #008360, #ff000a, #ff1900, #ff6427, #ffc100);
     background-size: 400% 400%;
     -webkit-animation: Gradient 5s ease infinite;
     -moz-animation: Gradient 15s ease infinite;

@@ -4,17 +4,24 @@ import { Box, Button, Divider, Typography } from "@mui/material";
 import AppsIcon from "@mui/icons-material/Apps";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
-import TagIcon from '@mui/icons-material/Tag';
-import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
-import FaxOutlinedIcon from '@mui/icons-material/FaxOutlined';
-import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import BrowseGalleryOutlinedIcon from '@mui/icons-material/BrowseGalleryOutlined';
-import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
-import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
+import TagIcon from "@mui/icons-material/Tag";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
+import FaxOutlinedIcon from "@mui/icons-material/FaxOutlined";
+import LinkOutlinedIcon from "@mui/icons-material/LinkOutlined";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import BrowseGalleryOutlinedIcon from "@mui/icons-material/BrowseGalleryOutlined";
+import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
+import PriorityHighOutlinedIcon from "@mui/icons-material/PriorityHighOutlined";
+import anh1 from "../../assets/anh1.jpg";
+import anh2 from "../../assets/anh2.jpg";
+import anh3 from "../../assets/anh3.jpg";
+import anh4 from "../../assets/anh4.jpg";
+import anh5 from "../../assets/anh5.jpg";
+import '../../index.css'
+
 const Home = () => {
   const [post, setPost] = useState("");
   const getApiPost = async () => {
@@ -30,7 +37,6 @@ const Home = () => {
     <Box
       sx={{ width: "100%", height: "fit-content", px: { xs: 1, xl: 4 }, pb: 2 }}
     >
-      
       {post && (
         <>
           <Box
@@ -165,7 +171,6 @@ const Home = () => {
                   >
                     <TagIcon fontSize="13px" />
                     <Typography
-                    
                       sx={{
                         fontSize: "13px",
                       }}
@@ -311,10 +316,14 @@ const Home = () => {
                   Website:
                 </Typography>
               </Box>
-              <Link  target="_blank" rel="noopener noreferrer" onClick={() => {
-                  window.open('https://TUVANTIENDUY.COM.VN/')
-                
-              }} style={{ textDecoration : 'none', color : 'black', cursor : 'p'}}>
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  window.open("https://TUVANTIENDUY.COM.VN/");
+                }}
+                style={{ textDecoration: "none", color: "black", cursor: "p" }}
+              >
                 <Typography sx={{ fontSize: "14px" }}>
                   {post?.website_link}
                 </Typography>
@@ -340,12 +349,17 @@ const Home = () => {
                   Email:
                 </Typography>
               </Box>
-              <Link  target="_blank" rel="noopener noreferrer" onClick={() => {
-                  window.open('https://mail.google.com/mail/u/0/#search/nhanluctienduy%40gmail.com')
-                
-              }} style={{ textDecoration : 'none', color : 'black', cursor : 'p'}}>
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  window.open(
+                    "https://mail.google.com/mail/u/0/#search/nhanluctienduy%40gmail.com"
+                  );
+                }}
+                style={{ textDecoration: "none", color: "black", cursor: "p" }}
+              >
                 <Typography sx={{ fontSize: "14px" }}>{post?.email}</Typography>
-
               </Link>
             </Box>
             <Divider />
@@ -440,10 +454,16 @@ const Home = () => {
             }}
           >
             <Box>
-              <Typography dangerouslySetInnerHTML={{ __html: post?.details[0]?.title_company }}></Typography>
+              <Typography
+                dangerouslySetInnerHTML={{
+                  __html: post?.details[0]?.title_company,
+                }}
+              ></Typography>
               {post?.details[0]?.list.map((el) => (
-                <Typography key={el} dangerouslySetInnerHTML={{ __html: el }}></Typography>
-                
+                <Typography
+                  key={el}
+                  dangerouslySetInnerHTML={{ __html: el }}
+                ></Typography>
               ))}
               <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
                 <li>{post?.details[0]?.representative_title}</li>
@@ -465,7 +485,7 @@ const Home = () => {
                     </Typography>
                   </Box>
                 </Box>
-                <Box>
+                <Box sx={{ position: "relative" }}>
                   <li>Danh sách nhân viên nghiệp vụ :</li>
                   {post?.details[0]?.members_list.map((el) => (
                     <ul style={{ fontSize: "15px" }}>
@@ -475,6 +495,138 @@ const Home = () => {
                       <li>{el?.member_position}</li>
                     </ul>
                   ))}
+                  <Box
+                    sx={{
+                      display: { xs: "none", xl: "flex", md: "flex" },
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: { xl: "480px", md: "350px" },
+                        height: { xl: "280px", md: "240px" },
+                        position: "absolute",
+                        top: 0,
+                        right: 0,
+                      }}
+                    >
+                      <img
+                        src={anh5}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "fill",
+                        }}
+                      />
+                    </Box>
+
+                    <Box
+                      sx={{
+                        width: { xl: "480px", md: "350px" },
+                        height: { xl: "280px", md: "240px" },
+                        position: "absolute",
+                        objectFit: "cover",
+                        top: "420px",
+                        right: 0,
+                      }}
+                    >
+                      <img
+                        src={anh1}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    </Box>
+
+                    <Box
+                      sx={{
+                        width: { xl: "480px", md: "350px" },
+                        height: { xl: "280px", md: "240px" },
+                        position: "absolute",
+                        objectFit: "cover",
+                        top: "860px",
+                        right: 0,
+                      }}
+                    >
+                      <img
+                        src={anh3}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    </Box>
+
+                    <Box
+                      sx={{
+                        width: { xl: "480px", md: "350px" },
+                        height: { xl: "280px", md: "240px" },
+                        position: "absolute",
+                        objectFit: "cover",
+                        bottom: "720px",
+                        right: 0,
+                      }}
+                    >
+                      <img
+                        src={anh4}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    </Box>
+                    <Box
+                      sx={{
+                        width: { xl: "480px", md: "350px" },
+                        height: { xl: "280px", md: "240px" },
+                        position: "absolute",
+                        objectFit: "cover",
+                        bottom: "320px",
+                        right: 0,
+                      }}
+                    >
+                      <img
+                        src={anh2}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    </Box>
+                    <Box
+                      className='header_info'
+                      sx={{
+                        width: { xl: "480px", md: "360px" },
+                        height: { xl: "120px", md: "240px" },
+                        position: "absolute",
+                        objectFit: "cover",
+                        bottom: "0",
+                        right: 0,
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 2,
+
+                      }}
+                    >
+                      <img
+                        src={post?.logo}
+                        style={{
+                          width: "120px",
+                          height: "120px",
+                          objectFit: "cover",
+                          
+                        }}
+                      />
+                      <Typography sx={{ fontWeight: 600 }}>
+                        CÔNG TY TNHH ĐẦU TƯ QUỐC TẾ NYSEASIA VÀ CUNG ỨNG NHÂN
+                        LỰC TIẾN DUY
+                      </Typography>
+                    </Box>
+                  </Box>
                 </Box>
               </Box>
             </Box>
