@@ -9,29 +9,30 @@ function Header() {
         sx={{
           display: "flex",
           alignItems: "center",
+          justifyContent : {xs : 'space-between' , xl : 'normal', md : 'normal'},
+          flexWrap : {xs : 'wrap'},
           gap: { xs: 1, xl: 4 },
           pb: 1,
         }}
       >
-        <Typography sx={{ fontSize: { xs: "12px" } }}>
+        <Typography sx={{ fontSize: { xs: "12px", xl : '14px' }, color : 'white' }}>
           Công ty mới thành lập
         </Typography>
-        <Typography sx={{ fontSize: { xs: "12px" } }}>
+        <Typography sx={{ fontSize: { xs: "12px", xl : '14px' }, color : 'white'  }}>
           Tỉnh/Thành phố
         </Typography>
-        <Typography sx={{ fontSize: { xs: "12px" } }}>
+        <Typography sx={{ fontSize: { xs: "12px", xl : '14px' }, color : 'white'  }}>
           Ngành nghề kinh doanh
         </Typography>
       </Box>
       <Divider />
       <Box sx={{ position: "relative" }}>
        <Box sx={{   width: "100%",
-            height: {xs : '30px', xl : "50px"}, fontSize: {xs : "13px", xl : '20px'}, }}>
+            height: {xs : '30px', xl : "40px"}, fontSize: {xs : "13px", xl : '16px'}, }}>
        <input
           type="text"
           
           style={{
-          
             padding: 12,
             borderRadius: "50px",
             width: "100%",
@@ -45,7 +46,7 @@ function Header() {
         <Button
         sx={{ color: "white",
             width: {xl : "120px", xs : '80px'},
-            height: {xs : '30px', xl : "50px"},
+            height: {xs : '30px', xl : "40px"},
             position: "absolute",
             top: 0,
             right: "0px",

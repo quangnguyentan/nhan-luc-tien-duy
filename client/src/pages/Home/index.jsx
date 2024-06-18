@@ -20,6 +20,8 @@ import anh2 from "../../assets/anh2.jpg";
 import anh3 from "../../assets/anh3.jpg";
 import anh4 from "../../assets/anh4.jpg";
 import anh5 from "../../assets/anh5.jpg";
+import logo from "../../assets/logo.png";
+
 import '../../index.css'
 
 const Home = () => {
@@ -58,14 +60,13 @@ const Home = () => {
             >
               <Box
                 sx={{
-                  width: { xs: "220px", md: "250px" },
-                  height: { xs: "100%", md: "200px" },
+                  width: { xs: "220px", md: "220px", xl : '220px' },
+                  height: { xs: "220px", md: "220px", xl : '220px' },
                   objectFit: "cover",
                 }}
               >
                 <img
-                  style={{ width: "100%", height: "160px" }}
-                  src={post?.logo}
+                  src={logo}
                   alt=""
                 />
                 <Box
@@ -75,13 +76,12 @@ const Home = () => {
                       xs: "calc(100% - 170px)",
                       xl: "calc(100% - 160px)",
                     },
-                    bgcolor: "white",
                   }}
                 ></Box>
               </Box>
               <Box
                 sx={{
-                  width: { xs: "55%", xl: "100%" },
+                  width: { xs: "55%", xl: "100%", md : '100%' },
                   display: "flex",
                   flexDirection: "column",
                   gap: 1,
@@ -94,7 +94,7 @@ const Home = () => {
                 <Box
                   sx={{
                     display: "flex",
-                    flexDirection: { xs: "column", xl: "row" },
+                    flexDirection: { xs: "column", xl: "row", md : 'row' },
                     gap: { xs: 1, xl: 3 },
                     alignItems: { xs: "start", xl: "center" },
                   }}
@@ -125,7 +125,7 @@ const Home = () => {
                 <Box
                   sx={{
                     display: "flex",
-                    flexDirection: { xs: "column", xl: "row" },
+                    flexDirection: { xs: "column", xl: "row", md : 'row', md : 'row' },
                     gap: { xs: 1, xl: 3 },
                     alignItems: { xs: "start", xl: "center" },
                   }}
@@ -156,7 +156,7 @@ const Home = () => {
                 <Box
                   sx={{
                     display: "flex",
-                    flexDirection: { xs: "column", xl: "row" },
+                    flexDirection: { xs: "column", xl: "row", md : 'row' },
                     gap: { xs: 1, xl: 3 },
                     alignItems: { xs: "start", xl: "center" },
                   }}
@@ -186,7 +186,7 @@ const Home = () => {
                 <Box
                   sx={{
                     display: "flex",
-                    flexDirection: { xs: "column", xl: "row" },
+                    flexDirection: { xs: "column", xl: "row", md : 'row' },
                     gap: { xs: 1, xl: 3 },
                     alignItems: { xs: "start", xl: "center" },
                   }}
@@ -217,7 +217,7 @@ const Home = () => {
                 <Box
                   sx={{
                     display: "flex",
-                    flexDirection: { xs: "column", xl: "row" },
+                    flexDirection: { xs: "column", xl: "row", md : 'row' },
                     gap: { xs: 1, xl: 3 },
                     alignItems: { xs: "start", xl: "center" },
                   }}
@@ -368,7 +368,7 @@ const Home = () => {
                 display: "flex",
                 gap: 3,
                 alignItems: { xl: "center", xs: "start" },
-                flexDirection: { xs: "column", xl: "row" },
+                flexDirection: { xs: "column", xl: "row", md : 'row' },
               }}
             >
               <Box
@@ -467,17 +467,17 @@ const Home = () => {
               ))}
               <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
                 <li>{post?.details[0]?.representative_title}</li>
-                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                   <li style={{ fontWeight: 600, fontSize: "15px" }}>
-                    {post?.details[0]?.representative[0]?.representative_name}
+                    {post?.details[0]?.representative[0]?.representative_name} 
                   </li>
                   <Box style={{ display: "flex", alignItems: "center" }}>
                     <Typography sx={{ fontWeight: 600, fontSize: "15px" }}>
-                      Chức vụ:{" "}
+                      - Chức vụ:&nbsp;
                     </Typography>
                     <Typography sx={{ fontWeight: 600, fontSize: "15px" }}>
                       (
-                      {
+                       {
                         post?.details[0]?.representative[0]
                           ?.representative_position
                       }
@@ -486,7 +486,7 @@ const Home = () => {
                   </Box>
                 </Box>
                 <Box sx={{ position: "relative" }}>
-                  <li>Danh sách nhân viên nghiệp vụ :</li>
+                  <li>Danh sách nhân viên nghiệp vụ:</li>
                   {post?.details[0]?.members_list.map((el) => (
                     <ul style={{ fontSize: "15px" }}>
                       <li>{el?.id_member}</li>
@@ -502,7 +502,7 @@ const Home = () => {
                   >
                     <Box
                       sx={{
-                        width: { xl: "480px", md: "350px" },
+                        width: { xl: "470px", md: "340px" },
                         height: { xl: "280px", md: "240px" },
                         position: "absolute",
                         top: 0,
@@ -521,7 +521,7 @@ const Home = () => {
 
                     <Box
                       sx={{
-                        width: { xl: "480px", md: "350px" },
+                        width: { xl: "470px", md: "340px" },
                         height: { xl: "280px", md: "240px" },
                         position: "absolute",
                         objectFit: "cover",
@@ -541,7 +541,7 @@ const Home = () => {
 
                     <Box
                       sx={{
-                        width: { xl: "480px", md: "350px" },
+                        width: { xl: "470px", md: "340px" },
                         height: { xl: "280px", md: "240px" },
                         position: "absolute",
                         objectFit: "cover",
@@ -561,7 +561,7 @@ const Home = () => {
 
                     <Box
                       sx={{
-                        width: { xl: "480px", md: "350px" },
+                        width: { xl: "470px", md: "340px" },
                         height: { xl: "280px", md: "240px" },
                         position: "absolute",
                         objectFit: "cover",
@@ -580,7 +580,7 @@ const Home = () => {
                     </Box>
                     <Box
                       sx={{
-                        width: { xl: "480px", md: "350px" },
+                        width: { xl: "470px", md: "340px" },
                         height: { xl: "280px", md: "240px" },
                         position: "absolute",
                         objectFit: "cover",
@@ -600,8 +600,8 @@ const Home = () => {
                     <Box
                       className='header_info'
                       sx={{
-                        width: { xl: "480px", md: "360px" },
-                        height: { xl: "120px", md: "240px" },
+                        width: { xl: "470px", md: "340px" },
+                        height: { xl: "120px", md: "120px" },
                         position: "absolute",
                         objectFit: "cover",
                         bottom: "0",
@@ -613,7 +613,7 @@ const Home = () => {
                       }}
                     >
                       <img
-                        src={post?.logo}
+                        src={logo}
                         style={{
                           width: "120px",
                           height: "120px",

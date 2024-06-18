@@ -19,7 +19,7 @@ function App() {
     }
   }, [location])
   return (
-    <Container disableGutters sx={{ height : 'fit-content', bgcolor : '#f2f2f2', pt : { xs : 2, xl : 2 }}}>
+    <Container disableGutters sx={{ height : 'fit-content', bgcolor : '#f2f2f2'}}>
     <ToastContainer
      position="top-right"
      autoClose={5000}

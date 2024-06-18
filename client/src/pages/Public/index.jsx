@@ -6,6 +6,7 @@ const Public = () => {
   return (
     <Box>
       <Header />
+      <Box sx={{ height : '20px' }}/>
       <Outlet />
     </Box>
   );
