@@ -9,13 +9,28 @@ import path from "./utils/path";
 import "react-toastify/dist/ReactToastify.css";
 import Edit from "./pages/Edit";
 import { useEffect } from "react";
+import Carrer from "./components/Carreer/Carrer";
+import Location from "./components/Location/Location";
+import Establish from "./components/Establish/Establish";
 
 function App() {
   const location = useLocation();
-  console.log(location)
   useEffect(() => {
     if(location.pathname === "/"){
       window.location.href = path.HOME;
+    }
+    if(location.pathname === '/cong-ty-tnhh-dich-vu-tu-van-cung-ung-nhan-luc-tien-duy/index.html'){
+      window.location.href = path.HOME;
+    }
+    if(location.pathname === '/cong-ty-tnhh-dich-vu-tu-van-cung-ung-nhan-luc-tien-duy/tinh-thanh-pho.html'){
+      window.location.href = path.LOCATION;
+    }
+    
+    if(location.pathname === '/cong-ty-tnhh-dich-vu-tu-van-cung-ung-nhan-luc-tien-duy/nganh-nghe.html'){
+      indow.location.href = path.CARRER;
+    }
+    if(location.pathname === '/cong-ty-tnhh-dich-vu-tu-van-cung-ung-nhan-luc-tien-duy/cong-ty.html'){
+      indow.location.href = path.ESTABLISH;
     }
   }, [location])
   return (
@@ -37,6 +52,11 @@ function App() {
    <Routes>
      <Route path={path.PUBLIC}  element={<Public  />}  >
        <Route path={path.HOME} element={<Home />}  />
+       <Route path={path.CARRER} element={<Carrer />}  />
+       <Route path={path.LOCATION} element={<Location />}  />
+       <Route path={path.ESTABLISH} element={<Establish />}  />
+
+
      </Route>
    </Routes>
   </Container>
